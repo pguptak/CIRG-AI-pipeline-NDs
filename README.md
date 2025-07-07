@@ -8,6 +8,8 @@ This repository hosts the **complete deployment setup** for our **Autism Detecti
 ✅ Docker-based deployment setup  
 ✅ Git LFS model file tracking  
 ✅ Web + Mobile support
+![image](https://github.com/user-attachments/assets/97953e50-7ad7-43de-ad02-0b519d62cfa3)
+
 
 > 🔗 **Live Web App:** [https://asd-dusky-ten.vercel.app](https://asd-dusky-ten.vercel.app)  
 > 📦 **GitHub Repo:** [CIRG-AI-pipeline-NDs](https://github.com/pguptak/CIRG-AI-pipeline-NDs)
@@ -77,6 +79,8 @@ Once deployed, note the public backend URL (e.g., `https://autism-api-abcdefg-ew
 ---
 
 ## 🌐 Frontend Web App Setup
+![image](https://github.com/user-attachments/assets/9d4ba5f2-c97a-47d5-8c09-dcfcba64fdc2)
+
 
 ### 🛠️ 1. Install Frontend Dependencies
 
@@ -165,9 +169,15 @@ git lfs track "*.dat"
 
 ## 🖼️ Sample Output
 
-📍 Annotated Image Example  
+📍 Annotated Image Example 
+![image](https://github.com/user-attachments/assets/b0fb7b12-40d8-48b1-be71-b8b7f425e670)
+
 📍 Region Predictions  
+![image](https://github.com/user-attachments/assets/88c5576d-d32c-4dfe-9ac8-0da27609ef49)
+
 📍 Final Diagnosis: `autistic high` or `non-autistic low`
+![image](https://github.com/user-attachments/assets/3e200414-8160-4c3b-be6f-75801808839c)
+
 
 
 ---
