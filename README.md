@@ -271,16 +271,9 @@ Available in the `docs/` folder:
 
 ## 👥 Team & Contact
 
-- **Lead**: Prashant K Gupta  
-- **Developer**: Rudra Verma  
-📧 Email: rudraverma2612@gmail.com  
+- **Lead**: Dr.Prashant K Gupta,Dr.Bireshwar Mazumder,Dr.Shallu Sharma
+- **Intern**: Rudra Verma, Devansh 
 🔗 GitHub: [pguptak](https://github.com/pguptak)
-
----
-
-## 📜 License
-
-This project is licensed under the **MIT License** — see the [LICENSE](LICENSE) file.
 
 ---
 
