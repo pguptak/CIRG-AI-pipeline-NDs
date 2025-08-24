@@ -279,7 +279,11 @@ Example response:
 ---
 ## Screenshots
 **WebApp**
+
+
 **MobileApp**
+
+
 **Cloud InterFace**
 
 ✨ *README will be updated regularly with new screenshots, APK versions, and feature improvements.*
