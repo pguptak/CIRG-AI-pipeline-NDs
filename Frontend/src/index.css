@@ -1,0 +1,103 @@
+/* Reset and base */
+body, html, #root, .app-container {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', 'Segoe UI', 'Roboto', 'Arial', sans-serif;
+  background: #fff;
+  color: #191b22;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Container holds content and limits scroll */
+.app-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 2rem 1rem;
+  min-height: 100vh;
+  box-sizing: border-box;
+  background-color: #f8f9fa;
+}
+
+/* Main content area with scroll only if content is too tall */
+.main-content {
+  max-height: 85vh;
+  overflow-y: auto;
+  width: 100%;
+  max-width: 640px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(30, 41, 59, 0.07);
+  padding: 2rem;
+  box-sizing: border-box;
+}
+
+/* Upload area */
+.upload-area {
+  border: 2px dashed #cbd5e1;
+  background: #f1f5f9;
+  border-radius: 8px;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+  padding: 2rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  color: #64748b;
+  font-size: 1rem;
+  user-select: none;
+}
+
+.upload-area:hover,
+.upload-area.dragover {
+  border-color: #1e293b;
+  background-color: #e0e7ef;
+}
+
+/* Remove purple outline and focus styles */
+*:focus-visible {
+  outline: none;
+  box-shadow: none;
+}
+
+/* Buttons styling */
+button {
+  font-family: inherit;
+  font-weight: 500;
+  background: #1e293b;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.75rem 1.5rem;
+  cursor: pointer;
+  transition: background-color 0.15s ease-in-out;
+  user-select: none;
+}
+
+button:hover:not(:disabled),
+button:focus:not(:disabled) {
+  background: #0f172a;
+}
+
+button:disabled {
+  background: #94a3b8;
+  cursor: not-allowed;
+}
+
+/* Image styling */
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin: 1rem auto;
+}
+
+/* Paragraph result styling */
+p {
+  max-width: 400px;
+  text-align: center;
+  color: #334155;
+  font-weight: 500;
+  margin-top: 1rem;
+}

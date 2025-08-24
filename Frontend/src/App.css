@@ -1,0 +1,321 @@
+/* Global font and base styles */
+body, html, #root, .app-container {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', 'Segoe UI', 'Roboto', 'Arial', sans-serif;
+  background: #fff;
+  color: #191b22;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  box-sizing: border-box;
+  background: #fff;
+  overflow: auto;
+}
+
+.main-content {
+  max-height: none;
+  overflow-y: visible;
+  padding: 2rem;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1200px;
+}
+
+/* Upload area - no purple borders */
+.upload-area {
+  border: 2px dashed #cbd5e1 !important;
+  background: #f1f5f9 !important;
+  border-radius: 8px !important;
+  transition: border-color 0.2s;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  color: #475569;
+  text-align: center;
+  user-select: none;
+}
+
+.upload-area:hover,
+.upload-area.dragover {
+  border-color: #1e293b !important;
+  background-color: #e0e7ef !important;
+}
+
+/* Remove all purple focus outlines */
+*:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Material-UI component overrides */
+.MuiContainer-root {
+  overflow: visible !important;
+}
+
+.MuiGrid-container {
+  overflow: visible !important;
+}
+
+.MuiBox-root {
+  overflow: visible !important;
+}
+
+/* Results styling */
+.results {
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 16px;
+  margin: 16px 0;
+}
+
+.results div {
+  margin-bottom: 8px;
+  padding: 8px;
+  background: white;
+  border-radius: 4px;
+  border-left: 4px solid #2196f3;
+}
+
+.results div:last-child {
+  margin-bottom: 0;
+  border-left-color: #ff9800;
+  font-weight: bold;
+}
+
+/* Confidence level styling */
+.confidence-high {
+  color: #4caf50;
+  font-weight: 600;
+}
+
+.confidence-medium {
+  color: #ff9800;
+  font-weight: 600;
+}
+
+.confidence-low {
+  color: #f44336;
+  font-weight: 600;
+}
+
+/* Image container styling */
+#imageContainer img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Loading animation */
+@keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.5; }
+  100% { opacity: 1; }
+}
+
+.loading-pulse {
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .MuiContainer-root {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .MuiCard-root {
+    margin-bottom: 16px;
+  }
+
+  .MuiButton-root {
+    min-width: 120px;
+  }
+  
+  .main-content {
+    padding: 1rem;
+  }
+}
+
+/* Webcam styling */
+.webcam-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.webcam-container video {
+  border-radius: 8px;
+  border: 2px solid #e0e0e0;
+}
+
+/* Snackbar positioning */
+.MuiSnackbar-root {
+  z-index: 1400;
+}
+
+/* Card elevation on hover */
+.MuiCard-root:hover {
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+/* Button loading state */
+.MuiButton-root:disabled {
+  opacity: 0.6;
+}
+
+/* Alert styling */
+.MuiAlert-root {
+  border-radius: 8px;
+}
+
+.MuiAlert-icon {
+  font-size: 20px;
+}
+
+/* Typography adjustments */
+.MuiTypography-h3 {
+  font-weight: 700;
+  background: linear-gradient(135deg, #2196f3 0%, #1976d2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Grid spacing */
+.MuiGrid-container {
+  margin-top: 0;
+}
+
+/* Card content padding */
+.MuiCardContent-root {
+  padding: 24px;
+}
+
+/* Image preview styling */
+.image-preview {
+  margin: 16px 0;
+  text-align: center;
+}
+
+.image-preview img {
+  max-width: 100%;
+  max-height: 300px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border: 2px solid #e0e0e0;
+}
+
+/* Action buttons container */
+.action-buttons {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 24px;
+}
+
+/* Results section styling */
+.results-section {
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.results-section .MuiTypography-root {
+  text-align: center;
+  color: #666;
+}
+
+/* Final decision styling */
+.final-decision {
+  background: linear-gradient(135deg, #ff9800 0%, #f57c00 100%);
+  color: white;
+  padding: 12px 24px;
+  border-radius: 20px;
+  font-weight: 600;
+  text-align: center;
+  margin: 16px 0;
+  box-shadow: 0 4px 12px rgba(255, 152, 0, 0.3);
+}
+
+.final-decision.autistic {
+  background: linear-gradient(135deg, #f44336 0%, #d32f2f 100%);
+  box-shadow: 0 4px 12px rgba(244, 67, 54, 0.3);
+}
+
+.final-decision.non-autistic {
+  background: linear-gradient(135deg, #4caf50 0%, #388e3c 100%);
+  box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+}
+
+/* Buttons (non-MUI) styling fallback */
+button {
+  font-family: inherit;
+  font-weight: 500;
+  background: #1e293b;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.75rem 1.5rem;
+  cursor: pointer;
+  transition: background-color 0.15s;
+  user-select: none;
+}
+
+button:hover:not(:disabled),
+button:focus:not(:disabled) {
+  background: #0f172a;
+}
+
+button:disabled {
+  background: #94a3b8;
+  cursor: not-allowed;
+}
+
+/* General image styling */
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin: 1rem auto;
+}
+
+/* Paragraph styling */
+p {
+  max-width: 400px;
+  text-align: center;
+  color: #334155;
+  font-weight: 500;
+  margin-top: 1rem;
+}
+
+/* Ensure all containers allow scrolling */
+.MuiBox-root[style*="overflow: hidden"] {
+  overflow: visible !important;
+}
+
+.scroll-container {
+  overflow-y: auto;
+  max-height: none;
+}
+
+body {
+  overflow-y: auto !important;
+}
+
+.app-container,
+.main-content,
+.MuiContainer-root {
+  overflow: visible !important;
+}
