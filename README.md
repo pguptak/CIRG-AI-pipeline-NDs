@@ -1,60 +1,116 @@
+# 🧠 CIRG Autism Detection AI Pipeline
 
-# 🧠 Autism Detection AI Pipeline – Deployment Repository
-
-This repository hosts the **complete deployment setup** for our **Autism Detection System**, which uses facial features to analyze and classify potential autism spectrum traits. It includes:
-
-✅ A fully working **FastAPI backend**  
-✅ A modern **React frontend**  
-✅ Docker-based deployment setup  
-✅ Git LFS model file tracking  
-✅ Web + Mobile support
-![image](https://github.com/user-attachments/assets/97953e50-7ad7-43de-ad02-0b519d62cfa3)
-
-
-> 🔗 **Live Web App:** [https://asd-dusky-ten.vercel.app](https://asd-dusky-ten.vercel.app)  
-> 📦 **GitHub Repo:** [CIRG-AI-pipeline-NDs](https://github.com/pguptak/CIRG-AI-pipeline-NDs)
+A comprehensive AI research and deployment system for detecting Autism Spectrum Disorder (ASD) traits from facial images using Vision Transformer models. This project features multiple APIs, a React web frontend, and a React Native Android mobile app deployed and hosted on Google Cloud.
 
 ---
 
-## 🧩 System Overview
+## 🔗 Live API Endpoints
 
-The system processes facial images and classifies 3 key regions using dedicated models:
+- **Age Prediction API**  
+  [https://age-api-667306373563.europe-west1.run.app](https://age-api-667306373563.europe-west1.run.app)
 
-- 👁️ Eyes  
-- 👃 Nose  
-- 👄 Lips
+- **Animal/Human Filter API**  
+  [https://animal-human-filter-667306373563.europe-west2.run.app](https://animal-human-filter-667306373563.europe-west2.run.app)
 
-Each region is passed through its own **Vision Transformer (ViT)** model. The outputs are then post-processed using a **fuzzy logic algorithm**, resulting in final decisions such as:
-
-```
-autistic high | non-autistic moderate | autistic low
-```
+- **Autism Detection Backend API**  
+  [https://autism-detection-backend-667306373563.europe-west1.run.app](https://autism-detection-backend-667306373563.europe-west1.run.app)
 
 ---
 
-## 📁 Project Structure
+## 🗂️ Repository Structure
 
-```
 CIRG-AI-pipeline-NDs/
-├── backend-api/               # FastAPI backend with model & inference
-│   ├── api.py
-│   ├── main.py
-│   ├── model_checkpoint/      # .bin model weights + dlib predictor
-│   ├── model_files/           # ViT configurations
-│   ├── Dockerfile             # Containerization setup
-│   └── ...
-│
-├── frontend-webapp/           # React frontend (Material UI based)
-│   ├── src/
-│   ├── public/
-│   └── ...
-```
+├── Age api/ # Age prediction API source and model files
+│ ├── Dockerfile
+│ ├── age_net.caffemodel
+│ ├── main.py
+│ ├── temp_age_inputs/
+│ ├── temp_age_outputs/
+│ └── (other supporting files)
+├── ASD api/ # Autism Detection API backend & models
+│ ├── api.py
+│ ├── Dockerfile
+│ ├── model_checkpoint/
+│ ├── requirements.txt
+│ ├── temp_inputs/
+│ ├── temp_outputs/
+│ └── (modeling and utility scripts)
+├── Frontend/ # React web frontend source and config files
+│ ├── package.json
+│ ├── public/
+│ ├── src/
+│ └── README.md
+├── Human face api/ # Animal/Human filter API and related assets
+│ ├── Dockerfile
+│ ├── main.py
+│ ├── shape_predictor_68_face_landmarks.dat
+│ ├── yolov8n.pt
+│ ├── temp_face_inputs/
+│ └── temp_face_outputs/
+├── MobileApp/ # React Native Android app with APK included
+│ ├── android/
+│ ├── App.tsx
+│ ├── index.js
+│ ├── package.json
+│ ├── tsconfig.json
+│ ├── babel.config.js
+│ ├── metro.config.js
+│ ├── tests/
+│ └── apk/ # Pre-built APK files (debug and release)
+├── docs/ # Documentation, diagrams, reports, screenshots
+├── .gitignore
+├── .gitattributes # Git LFS configuration for large files
+├── README.md
 
 ---
 
-## 🚀 Backend Deployment Instructions
+## 📚 Project Overview
 
-### 📦 1. Build Docker Image (Locally or for Render/GCP)
+This project is an end-to-end system for ASD detection from facial images, leveraging state-of-the-art Vision Transformer (ViT) models analyzing facial regions (eyes, nose, lips) independently and applying fuzzy logic for the final decision.
+
+- Multiple backend APIs deployed on Google Cloud Run provide scalable and secure model inference.
+- React web app facilitates image upload and live webcam interaction with annotated results.
+- Cross-platform React Native Android app allows mobile users to perform inference with the hosted backend.
+- Dockerized environment ensures reproducible builds and deployment.
+- Large pretrained models and assets are managed efficiently via Git LFS.
+
+---
+
+## 📱 Mobile App Details
+
+The mobile app, found in the `MobileApp/` directory, is a React Native Android application that provides:
+
+- Image capture and gallery upload capabilities.
+- Integration with backend AI APIs for inference.
+- Visualization of detailed region-wise predictions and annotated output images.
+- Pre-built APK files located in the `apk/` folder for easy installation on Android devices without building from source.
+
+### Mobile App Key Folders & Files
+
+- `android/` — Native Android project files.
+- `App.tsx` — Main React Native component (TypeScript).
+- `index.js` — Entry point registering the main app.
+- `package.json` — Project dependencies and scripts.
+- `tsconfig.json` — TypeScript configuration.
+- `babel.config.js` & `metro.config.js` — Transpiler and bundler configs.
+- `tests/` — Unit and integration tests.
+- `apk/` — Debug and release APKs for Android devices.
+
+### Running Mobile App Locally
+
+```bash
+cd MobileApp
+npm install
+npx react-native run-android
+```
+
+Alternatively, use the pre-built APK from the `apk/` folder for device installation.
+
+---
+
+## 🏗️ Running Backend & Frontend Locally
+
+### Backend API
 
 ```bash
 cd backend-api
@@ -62,141 +118,87 @@ docker build -t autism-backend .
 docker run -p 8000:8000 autism-backend
 ```
 
-Or with Uvicorn directly:
+### Frontend Web App
 
 ```bash
-uvicorn api:app --host 0.0.0.0 --port 8000
-```
-
-### ☁️ 2. Deploy on Google Cloud Run (or Render)
-
-```bash
-gcloud run deploy autism-api   --source .   --region europe-west1   --allow-unauthenticated
-```
-
-Once deployed, note the public backend URL (e.g., `https://autism-api-abcdefg-ew.a.run.app`)
-
----
-
-## 🌐 Frontend Web App Setup
-![image](https://github.com/user-attachments/assets/9d4ba5f2-c97a-47d5-8c09-dcfcba64fdc2)
-
-
-### 🛠️ 1. Install Frontend Dependencies
-
-```bash
-cd frontend-webapp
+cd Frontend
 npm install
-```
-
-### 🔗 2. Connect Frontend to Backend
-
-In `frontend-webapp/src/config.js`, set:
-
-```js
-const config = {
-  API_BASE_URL: 'https://your-backend-url.onrender.com',
-};
-```
-
-Or, create a `.env`:
-
-```env
-REACT_APP_API_URL=https://autism-api-ew.a.run.app
-```
-
-### ▶️ 3. Start Frontend Locally
-
-```bash
 npm start
 ```
 
 ---
 
-## 🧪 Live Demo
+## 🔎 Sample Backend API Usage
 
-**🔗 Web App Live at:**  
-👉 [https://asd-dusky-ten.vercel.app](https://asd-dusky-ten.vercel.app)
-
-Features:
-
-- Drag & drop or webcam upload
-- Real-time inference via API
-- Annotated output with bounding boxes
-- Region-wise confidence levels
-- Final decision via fuzzy logic
-
----
-
-## 📦 Backend API Endpoints
-
-| Method | Endpoint           | Description                                  |
-|--------|--------------------|----------------------------------------------|
-| POST   | `/predict/`        | Accepts image, returns annotated output + results |
-| GET    | `/annotated/{img}` | Serves processed images with bounding boxes  |
-| GET    | `/healthz`         | Health check route                           |
-
----
-
-## 📂 Model Checkpoints
-
-Stored in `backend-api/model_checkpoint/` and managed using **Git LFS**:
-
-- `eyes_checkpoint.bin` (ViT)
-- `nose_checkpoint.bin` (ViT)
-- `lips_checkpoint.bin` (ViT)
-- `shape_predictor_68_face_landmarks.dat` (Dlib)
-
-Add Git LFS support:
+Make a POST request with an image:
 
 ```bash
-git lfs install
-git lfs track "*.bin"
-git lfs track "*.dat"
+curl -X POST -F "file=@face.jpg" https://autism-detection-backend-667306373563.europe-west1.run.app/predict/
+```
+
+Example response:
+
+```json
+{
+  "results": [
+    {"region": "eyes", "label": "autistic", "confidence": 91.2},
+    {"region": "lips", "label": "non-autistic", "confidence": 88.6},
+    {"final_decision": "autistic high"}
+  ],
+  "annotated_image_path": "/static/output/image123.jpg"
+}
 ```
 
 ---
 
-## 🧠 Model Design & Pipeline
+## 🛡️ Security Overview
 
-- **Facial Landmark Detection** via Dlib (68 points)
-- **Region-wise Classification** using ViT models
-- **Postprocessing** with fuzzy logic decision-making
-- **Annotated Outputs** with bounding boxes and labels
-- **Logs** saved as CSV and images
+- End-to-end HTTPS on all service endpoints.
+- Strict input validation and MIME type filtering.
+- Stateless backend, no persistent user data storage.
+- Container isolation with Google Cloud Run.
+- Single authenticated POST API endpoint.
 
----
-
-## 🖼️ Sample Output
-
-📍 Annotated Image Example 
-![image](https://github.com/user-attachments/assets/b0fb7b12-40d8-48b1-be71-b8b7f425e670)
-
-📍 Region Predictions  
-![image](https://github.com/user-attachments/assets/88c5576d-d32c-4dfe-9ac8-0da27609ef49)
-
-📍 Final Diagnosis: `autistic high` or `non-autistic low`
-![image](https://github.com/user-attachments/assets/3e200414-8160-4c3b-be6f-75801808839c)
-
-
+Full security mitigations detailed in the [Attack Vector Mitigation](./docs/Attack-Vector-Mitigitation.pdf) report.
 
 ---
 
-## 📊 Logs & Monitoring
+## 🖼️ Screenshots & Visual Assets
 
-- Predictions logged in: `backend-api/prediction_log.csv`
-- Annotated outputs stored in: `backend-api/temp_outputs/`
-- Cloud logs available on Render or Google Cloud Console
+*(Placeholders for future additions of screenshots from web app, mobile interface, annotated results, and cloud monitoring dashboards.)*
 
 ---
 
+## 📑 Documentation & Reports
 
+Access detailed reports and design documents in the `docs/` folder:
 
-## 🧪 Testing the API
-
-```bash
-curl -X POST -F "file=@test.jpg" https://your-backend-url/predict/
-```
+- [Integration Report](./docs/Integration_Report.pdf)  
+- [Deployment Report](./docs/Deployment_Report.pdf)  
+- [Weekly Progress Report](./docs/Autism_AI_Pipeline_Weekly_Report.pdf)  
+- [Dataflow & Outputs](./docs/Dataflow-and-Outputs.pdf)
 
 ---
 
+## ✨ Contributing
+
+Contributions welcome! Open issues or submit pull requests for bug fixes, features, or improvements.
+
+---
+
+## 👤 Team & Contact
+
+Lead: Prashant K Gupta  
+Developer: Rudra Verma  
+Contact: rudraverma2612@gmail.com  
+GitHub: [pguptak](https://github.com/pguptak)
+
+---
+
+## 📜 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
+
+*README will be updated regularly with new screenshots, APK versions, and feature improvements.*
