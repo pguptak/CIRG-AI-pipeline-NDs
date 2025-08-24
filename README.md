@@ -279,7 +279,7 @@ Example response:
 ---
 ## Screenshots
 **WebApp**
-
+https://github.com/pguptak/CIRG-AI-pipeline-NDs/blob/3841c67a0d3237dfa863a4a14c837a25eb1dc699/Docs/Images/1.png
 
 **MobileApp**
 
