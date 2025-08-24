@@ -64,7 +64,7 @@ CIRG-AI-pipeline-NDs/
 │   ├── tests/
 │   └── apk/                  # Pre-built APKs (debug/release)
 │
-├── ASD.apk
+├── ASD.apk                   #Directly Usable APK
 │
 ├── docs/                     # Documentation, diagrams, reports, screenshots
 ├── .gitignore
@@ -271,7 +271,7 @@ Example response:
 
 ## 👥 Team & Contact
 
-- **Lead**: Dr.Prashant K Gupta,Dr.Bireshwar Mazumder,Dr.Shallu Sharma
+- **Lead**: Dr.Prashant K Gupta, Dr.Bireshwar Mazumder, Dr.Shallu Sharma
 - **Intern**: Rudra Verma, Devansh
   
 🔗 GitHub: [pguptak](https://github.com/pguptak)
