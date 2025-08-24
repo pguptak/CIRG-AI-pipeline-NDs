@@ -272,7 +272,8 @@ Available in the `docs/` folder:
 ## 👥 Team & Contact
 
 - **Lead**: Dr.Prashant K Gupta,Dr.Bireshwar Mazumder,Dr.Shallu Sharma
-- **Intern**: Rudra Verma, Devansh 
+- **Intern**: Rudra Verma, Devansh
+  
 🔗 GitHub: [pguptak](https://github.com/pguptak)
 
 ---
