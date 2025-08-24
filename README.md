@@ -3,7 +3,9 @@
 A comprehensive AI research and deployment system for detecting Autism Spectrum Disorder (ASD) traits from facial images using Vision Transformer (ViT) models. This project features multiple AI-powered APIs, a React web frontend, and a React Native Android mobile app —all deployed and hosted on Google Cloud.
 
 To Use
+
 WebApp Link: https://autism-classification-advanced.vercel.app/
+
 Mobile App: ASD.apk(Uploaded here download and Install)
 
 ---
