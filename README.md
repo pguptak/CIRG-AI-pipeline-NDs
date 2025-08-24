@@ -29,7 +29,7 @@ CIRG-AI-pipeline-NDs/
 │   ├── temp_age_outputs/
 │   └── (supporting scripts)
 │
-├── backend-api/              # Autism Detection API backend & models
+├── ASD api/              # Autism Detection API backend & models
 │   ├── api.py
 │   ├── Dockerfile
 │   ├── model_checkpoint/
@@ -64,6 +64,8 @@ CIRG-AI-pipeline-NDs/
 │   ├── tests/
 │   └── apk/                  # Pre-built APKs (debug/release)
 │
+├── ASD.apk
+│
 ├── docs/                     # Documentation, diagrams, reports, screenshots
 ├── .gitignore
 ├── .gitattributes            # Git LFS configuration
@@ -81,6 +83,10 @@ This project is an end-to-end AI pipeline for Autism Spectrum Disorder (ASD) det
 - **Mobile App (React Native Android)**: Capture or upload photos, send requests to APIs, and get results instantly. Pre-built APKs available.
 - **Cloud-native Deployment**: All services are containerized and deployed on Google Cloud Run.
 - **Modeling**: Vision Transformer models analyze **eyes, nose, and lips** independently. Final inference uses fuzzy-logic aggregation.
+
+---
+## Model Overview and Details
+-This is to be added
 
 ---
 
@@ -123,7 +129,7 @@ npm install
 npx react-native run-android
 ```
 
-Or install directly using the pre-built APKs from `MobileApp/apk/`.
+Or install directly using the pre-built APKs from `ASD.apk`.
 
 ---
 
@@ -132,7 +138,7 @@ Or install directly using the pre-built APKs from `MobileApp/apk/`.
 ### Autism Detection API
 
 ```bash
-cd backend-api
+cd ASD api
 docker build -t autism-backend .
 docker run -p 8000:8000 autism-backend
 ```
@@ -254,18 +260,12 @@ Example response:
 - Container isolation with **Google Cloud Run**.  
 - Single authenticated POST API endpoints.  
 
-More details: [Attack Vector Mitigation Report](./docs/Attack-Vector-Mitigitation.pdf)
 
 ---
 
 ## 📑 Documentation & Reports
 
-Available in the `docs/` folder:
-
-- [Integration Report](./docs/Integration_Report.pdf)  
-- [Deployment Report](./docs/Deployment_Report.pdf)  
-- [Weekly Progress Report](./docs/Autism_AI_Pipeline_Weekly_Report.pdf)  
-- [Dataflow & Outputs](./docs/Dataflow-and-Outputs.pdf)
+(Research Paper)
 
 ---
 
