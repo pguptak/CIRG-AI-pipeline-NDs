@@ -1,6 +1,6 @@
 # 🧠 CIRG Autism Detection AI Pipeline
 
-A comprehensive AI research and deployment system for detecting Autism Spectrum Disorder (ASD) traits from facial images using Vision Transformer models. This project features multiple APIs, a React web frontend, and a React Native Android mobile app deployed and hosted on Google Cloud.
+A comprehensive AI research and deployment system for detecting Autism Spectrum Disorder (ASD) traits from facial images using Vision Transformer (ViT) models. This project features multiple AI-powered APIs, a React web frontend, and a React Native Android mobile app — all deployed and hosted on Google Cloud.
 
 ---
 
@@ -19,82 +19,101 @@ A comprehensive AI research and deployment system for detecting Autism Spectrum 
 
 ## 🗂️ Repository Structure
 
+```
 CIRG-AI-pipeline-NDs/
-├── Age api/ # Age prediction API source and model files
-│ ├── Dockerfile
-│ ├── age_net.caffemodel
-│ ├── main.py
-│ ├── temp_age_inputs/
-│ ├── temp_age_outputs/
-│ └── (other supporting files)
-├── ASD api/ # Autism Detection API backend & models
-│ ├── api.py
-│ ├── Dockerfile
-│ ├── model_checkpoint/
-│ ├── requirements.txt
-│ ├── temp_inputs/
-│ ├── temp_outputs/
-│ └── (modeling and utility scripts)
-├── Frontend/ # React web frontend source and config files
-│ ├── package.json
-│ ├── public/
-│ ├── src/
-│ └── README.md
-├── Human face api/ # Animal/Human filter API and related assets
-│ ├── Dockerfile
-│ ├── main.py
-│ ├── shape_predictor_68_face_landmarks.dat
-│ ├── yolov8n.pt
-│ ├── temp_face_inputs/
-│ └── temp_face_outputs/
-├── MobileApp/ # React Native Android app with APK included
-│ ├── android/
-│ ├── App.tsx
-│ ├── index.js
-│ ├── package.json
-│ ├── tsconfig.json
-│ ├── babel.config.js
-│ ├── metro.config.js
-│ ├── tests/
-│ └── apk/ # Pre-built APK files (debug and release)
-├── docs/ # Documentation, diagrams, reports, screenshots
+├── Age-api/                  # Age prediction API source and model files
+│   ├── Dockerfile
+│   ├── age_net.caffemodel
+│   ├── main.py
+│   ├── temp_age_inputs/
+│   ├── temp_age_outputs/
+│   └── (supporting scripts)
+│
+├── backend-api/              # Autism Detection API backend & models
+│   ├── api.py
+│   ├── Dockerfile
+│   ├── model_checkpoint/
+│   ├── requirements.txt
+│   ├── temp_inputs/
+│   ├── temp_outputs/
+│   └── (utility scripts & configs)
+│
+├── Human-face-api/           # Animal/Human filter API
+│   ├── Dockerfile
+│   ├── main.py
+│   ├── shape_predictor_68_face_landmarks.dat
+│   ├── yolov8n.pt
+│   ├── temp_face_inputs/
+│   └── temp_face_outputs/
+│
+├── Frontend/                 # React web frontend
+│   ├── package.json
+│   ├── public/
+│   ├── src/
+│   ├── README.md
+│   └── (config & assets)
+│
+├── MobileApp/                # React Native Android app
+│   ├── android/
+│   ├── App.tsx
+│   ├── index.js
+│   ├── package.json
+│   ├── tsconfig.json
+│   ├── babel.config.js
+│   ├── metro.config.js
+│   ├── tests/
+│   └── apk/                  # Pre-built APKs (debug/release)
+│
+├── docs/                     # Documentation, diagrams, reports, screenshots
 ├── .gitignore
-├── .gitattributes # Git LFS configuration for large files
+├── .gitattributes            # Git LFS configuration
 ├── README.md
+```
 
 ---
 
 ## 📚 Project Overview
 
-This project is an end-to-end system for ASD detection from facial images, leveraging state-of-the-art Vision Transformer (ViT) models analyzing facial regions (eyes, nose, lips) independently and applying fuzzy logic for the final decision.
+This project is an end-to-end AI pipeline for Autism Spectrum Disorder (ASD) detection from facial images:
 
-- Multiple backend APIs deployed on Google Cloud Run provide scalable and secure model inference.
-- React web app facilitates image upload and live webcam interaction with annotated results.
-- Cross-platform React Native Android app allows mobile users to perform inference with the hosted backend.
-- Dockerized environment ensures reproducible builds and deployment.
-- Large pretrained models and assets are managed efficiently via Git LFS.
+- **APIs**: Modular cloud APIs for filtering, age detection, and autism prediction.
+- **Web App (React)**: Upload images, run inference via APIs, and view annotated outputs.
+- **Mobile App (React Native Android)**: Capture or upload photos, send requests to APIs, and get results instantly. Pre-built APKs available.
+- **Cloud-native Deployment**: All services are containerized and deployed on Google Cloud Run.
+- **Modeling**: Vision Transformer models analyze **eyes, nose, and lips** independently. Final inference uses fuzzy-logic aggregation.
+
+---
+
+## 🌐 Web App Features
+
+The React web frontend (in `Frontend/`) provides a seamless interface for:
+
+- Image uploads and webcam captures.  
+- Automatic preprocessing (face validation & filtering).  
+- Region-wise analysis (eyes, nose, lips).  
+- Annotated outputs for visualization.  
+- Integration with live backend APIs hosted on Google Cloud Run.
+
+### Running Web App Locally
+
+```bash
+cd Frontend
+npm install
+npm start
+```
+
+The app will be served locally at `http://localhost:3000`.
 
 ---
 
 ## 📱 Mobile App Details
 
-The mobile app, found in the `MobileApp/` directory, is a React Native Android application that provides:
+The mobile app (in `MobileApp/`) is a React Native Android project that enables:
 
-- Image capture and gallery upload capabilities.
-- Integration with backend AI APIs for inference.
-- Visualization of detailed region-wise predictions and annotated output images.
-- Pre-built APK files located in the `apk/` folder for easy installation on Android devices without building from source.
-
-### Mobile App Key Folders & Files
-
-- `android/` — Native Android project files.
-- `App.tsx` — Main React Native component (TypeScript).
-- `index.js` — Entry point registering the main app.
-- `package.json` — Project dependencies and scripts.
-- `tsconfig.json` — TypeScript configuration.
-- `babel.config.js` & `metro.config.js` — Transpiler and bundler configs.
-- `tests/` — Unit and integration tests.
-- `apk/` — Debug and release APKs for Android devices.
+- **Camera & Gallery Uploads**
+- **Cloud inference with APIs**
+- **Region-wise prediction visualizations**
+- **APK-based quick installation**
 
 ### Running Mobile App Locally
 
@@ -104,13 +123,13 @@ npm install
 npx react-native run-android
 ```
 
-Alternatively, use the pre-built APK from the `apk/` folder for device installation.
+Or install directly using the pre-built APKs from `MobileApp/apk/`.
 
 ---
 
-## 🏗️ Running Backend & Frontend Locally
+## 🏗️ Running Backend APIs Locally
 
-### Backend API
+### Autism Detection API
 
 ```bash
 cd backend-api
@@ -118,34 +137,110 @@ docker build -t autism-backend .
 docker run -p 8000:8000 autism-backend
 ```
 
-### Frontend Web App
+### Age Prediction API
 
 ```bash
-cd Frontend
-npm install
-npm start
+cd Age-api
+docker build -t age-api .
+docker run -p 8001:8001 age-api
+```
+
+### Human/Animal Filter API
+
+```bash
+cd Human-face-api
+docker build -t human-face-api .
+docker run -p 8002:8002 human-face-api
 ```
 
 ---
 
-## 🔎 Sample Backend API Usage
+## 🔎 Sample API Usage
 
-Make a POST request with an image:
+### 1. Human/Animal Face Filter API
 
 ```bash
-curl -X POST -F "file=@face.jpg" https://autism-detection-backend-667306373563.europe-west1.run.app/predict/
+curl -X 'POST'   'https://animal-human-filter-667306373563.europe-west2.run.app/filter_face/'   -H 'accept: application/json'   -H 'Content-Type: multipart/form-data'   -F 'file=@123.jpg;type=image/jpeg'
 ```
 
 Example response:
 
 ```json
 {
+  "valid": true,
+  "status": "face_validated_and_processed",
+  "message": "Human face validated and processed by age API.",
+  "face_count": 1,
+  "annotated_image_url": "/annotated_face/face_annotated.jpg",
+  "age_analysis_data": {
+    "status": "child_autism_screened",
+    "autism_prediction_data": {
+      "status": "success",
+      "results": [
+        {"region": "eyes", "label": "non-autistic", "confidence": 70.14},
+        {"region": "nose", "label": "non-autistic", "confidence": 61.92},
+        {"region": "lips", "label": "non-autistic", "confidence": 73.06},
+        {"final_decision": "non-autistic High"}
+      ],
+      "annotated_image_path": "/annotated/autism_annotated.jpg"
+    },
+    "age_check_summary": {
+      "has_faces": true,
+      "contains_kids": true,
+      "kids_count": 1,
+      "adults_count": 0
+    }
+  }
+}
+```
+
+---
+
+### 2. Age Prediction API
+
+```bash
+curl -X 'POST'   'https://age-api-667306373563.europe-west1.run.app/process'   -H 'accept: application/json'   -H 'Content-Type: multipart/form-data'   -F 'file=@face.jpg;type=image/jpeg'
+```
+
+Example response:
+
+```json
+{
+  "status": "child_autism_screened",
+  "message": "Child detected. Autism analysis performed.",
+  "autism_prediction_data": {
+    "status": "success",
+    "results": [
+      {"region": "eyes", "label": "autistic", "confidence": 69.17},
+      {"region": "nose", "label": "autistic", "confidence": 70.42},
+      {"region": "lips", "label": "non-autistic", "confidence": 72.49},
+      {"final_decision": "autistic Moderate"}
+    ],
+    "annotated_image_path": "/annotated/autism_annotated.jpg"
+  }
+}
+```
+
+---
+
+### 3. Autism Detection Backend API
+
+```bash
+curl -X 'POST'   'https://autism-detection-backend-667306373563.europe-west1.run.app/predict/'   -H 'accept: application/json'   -H 'Content-Type: multipart/form-data'   -F 'file=@face.jpg;type=image/jpeg'
+```
+
+Example response:
+
+```json
+{
+  "status": "success",
   "results": [
-    {"region": "eyes", "label": "autistic", "confidence": 91.2},
-    {"region": "lips", "label": "non-autistic", "confidence": 88.6},
-    {"final_decision": "autistic high"}
+    {"region": "eyes", "label": "autistic", "confidence": 69.17},
+    {"region": "nose", "label": "autistic", "confidence": 70.42},
+    {"region": "lips", "label": "non-autistic", "confidence": 72.49},
+    {"final_decision": "autistic Moderate"}
   ],
-  "annotated_image_path": "/static/output/image123.jpg"
+  "annotated_image_path": "/annotated/annotated_output.jpg"
 }
 ```
 
@@ -153,25 +248,19 @@ Example response:
 
 ## 🛡️ Security Overview
 
-- End-to-end HTTPS on all service endpoints.
-- Strict input validation and MIME type filtering.
-- Stateless backend, no persistent user data storage.
-- Container isolation with Google Cloud Run.
-- Single authenticated POST API endpoint.
+- End-to-end **HTTPS** for all endpoints.
+- **Strict input validation** and MIME-type filtering.  
+- Stateless backend: **no persistent user data storage**.  
+- Container isolation with **Google Cloud Run**.  
+- Single authenticated POST API endpoints.  
 
-Full security mitigations detailed in the [Attack Vector Mitigation](./docs/Attack-Vector-Mitigitation.pdf) report.
-
----
-
-## 🖼️ Screenshots & Visual Assets
-
-*(Placeholders for future additions of screenshots from web app, mobile interface, annotated results, and cloud monitoring dashboards.)*
+More details: [Attack Vector Mitigation Report](./docs/Attack-Vector-Mitigitation.pdf)
 
 ---
 
 ## 📑 Documentation & Reports
 
-Access detailed reports and design documents in the `docs/` folder:
+Available in the `docs/` folder:
 
 - [Integration Report](./docs/Integration_Report.pdf)  
 - [Deployment Report](./docs/Deployment_Report.pdf)  
@@ -180,25 +269,19 @@ Access detailed reports and design documents in the `docs/` folder:
 
 ---
 
-## ✨ Contributing
+## 👥 Team & Contact
 
-Contributions welcome! Open issues or submit pull requests for bug fixes, features, or improvements.
-
----
-
-## 👤 Team & Contact
-
-Lead: Prashant K Gupta  
-Developer: Rudra Verma  
-Contact: rudraverma2612@gmail.com  
-GitHub: [pguptak](https://github.com/pguptak)
+- **Lead**: Prashant K Gupta  
+- **Developer**: Rudra Verma  
+📧 Email: rudraverma2612@gmail.com  
+🔗 GitHub: [pguptak](https://github.com/pguptak)
 
 ---
 
 ## 📜 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the **MIT License** — see the [LICENSE](LICENSE) file.
 
 ---
 
-*README will be updated regularly with new screenshots, APK versions, and feature improvements.*
+✨ *README will be updated regularly with new screenshots, APK versions, and feature improvements.*
