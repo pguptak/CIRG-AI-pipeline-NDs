@@ -6,7 +6,7 @@ To Use
 
 WebApp Link: https://autism-classification-advanced.vercel.app/
 
-Mobile App: ASD.apk(Uploaded here download and Install)
+Mobile App: ASD.apk (Uploaded here download and Install)
 
 ---
 
