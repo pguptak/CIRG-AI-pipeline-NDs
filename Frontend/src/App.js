@@ -623,19 +623,57 @@ function App() {
                     </Button>
                   </Box>
 
-                  {error && (
-                    <Alert severity="error" sx={{ mt: 3 }}>
-                      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                        <ErrorIcon />
-                        <Box>
-                          <Typography variant="body2" sx={{ fontWeight: 600 }}>
-                            Analysis Failed
-                          </Typography>
-                          <Typography variant="body2">{error}</Typography>
-                        </Box>
-                      </Box>
-                    </Alert>
-                  )}
+{error && (
+  <Alert 
+    severity="error" 
+    sx={{ 
+      mt: 3,
+      padding: '32px', // Increase Alert padding
+      borderRadius: '16px' // Larger border radius
+    }}
+  >
+    <Box sx={{ 
+      display: 'flex', 
+      alignItems: 'center', 
+      gap: 3, // Increase gap from 1 to 3
+      minHeight: '80px' // Set minimum height for larger box
+    }}>
+      <ErrorIcon sx={{ 
+        fontSize: '4rem', // Much larger error icon
+        color: '#d32f2f' 
+      }} />
+      <Box sx={{ 
+        flex: 1,
+        padding: '16px 0' // Add vertical padding to inner box
+      }}>
+        <Typography 
+          variant="h4" 
+          sx={{ 
+            fontWeight: 700,
+            fontSize: '2.5rem', // Very large title
+            color: '#d32f2f',
+            marginBottom: '12px',
+            lineHeight: 1.2
+          }}
+        >
+          Analysis Failed
+        </Typography>
+        <Typography 
+          variant="h5"
+          sx={{ 
+            fontSize: '1.8rem', // Large error message text
+            fontWeight: 500,
+            color: '#f44336',
+            lineHeight: 1.3
+          }}
+        >
+          {error}
+        </Typography>
+      </Box>
+    </Box>
+  </Alert>
+)}
+
                 </CardContent>
               </Card>
             </Grid>
