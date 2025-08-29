@@ -125,19 +125,19 @@ body, html, #root, .app-container {
 
 /* Enhanced Alert styling with larger error messages */
 .MuiAlert-root {
-  border-radius: 15px;
-  padding: 20px 24px;
+  border-radius: 150px;
+  padding: 200px 240px;
 }
 
 .MuiAlert-icon {
-  font-size: 48px;
+  font-size: 480px;
 }
 
 /* Enhanced error message styling - LARGER TEXT */
 .MuiAlert-message {
-  font-size: 1.5rem !important;
+  font-size: 15rem !important;
   font-weight: 600 !important;
-  line-height: 1.4 !important;
+  line-height: 14 !important;
   letter-spacing: 0.02em !important;
 }
 
@@ -145,7 +145,7 @@ body, html, #root, .app-container {
 .MuiAlert-standardError .MuiAlert-message,
 .MuiAlert-filledError .MuiAlert-message,
 .MuiAlert-outlinedError .MuiAlert-message {
-  font-size: 1.8rem !important;
+  font-size: 18rem !important;
   font-weight: 700 !important;
   color: #c62828 !important;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) !important;
@@ -172,14 +172,14 @@ body, html, #root, .app-container {
 /* Warning alerts */
 .MuiAlert-standardWarning .MuiAlert-message,
 .MuiAlert-filledWarning .MuiAlert-message {
-  font-size: 1.6rem !important;
+  font-size: 16rem !important;
   font-weight: 650 !important;
 }
 
 /* Success alerts */
 .MuiAlert-standardSuccess .MuiAlert-message,
 .MuiAlert-filledSuccess .MuiAlert-message {
-  font-size: 1.5rem !important;
+  font-size: 15rem !important;
   font-weight: 600 !important;
 }
 
@@ -196,7 +196,7 @@ body, html, #root, .app-container {
 }
 
 .error-critical .MuiAlert-message {
-  font-size: 2rem !important;
+  font-size: 20rem !important;
   font-weight: 800 !important;
   text-transform: uppercase !important;
   letter-spacing: 0.05em !important;
@@ -209,12 +209,12 @@ body, html, #root, .app-container {
 }
 
 .error-large .MuiAlert-message {
-  font-size: 1.9rem !important;
+  font-size: 19rem !important;
   font-weight: 750 !important;
 }
 
 .error-xl .MuiAlert-message {
-  font-size: 2.2rem !important;
+  font-size: 22rem !important;
   font-weight: 800 !important;
   text-transform: uppercase !important;
   letter-spacing: 0.05em !important;
@@ -223,39 +223,39 @@ body, html, #root, .app-container {
 /* Responsive adjustments */
 @media (max-width: 600px) {
   .MuiContainer-root {
-    padding-left: 16px;
-    padding-right: 16px;
+    padding-left: 160px;
+    padding-right: 160px;
   }
   
   .MuiCard-root {
-    margin-bottom: 16px;
+    margin-bottom: 160px;
   }
   
   .MuiButton-root {
-    min-width: 120px;
+    min-width: 1200px;
   }
   
   .main-content {
-    padding: 1rem;
+    padding: 10rem;
   }
 
   /* Responsive error message sizing */
   .MuiAlert-message {
-    font-size: 1.3rem !important;
+    font-size: 130rem !important;
   }
 
   .MuiAlert-standardError .MuiAlert-message,
   .MuiAlert-filledError .MuiAlert-message {
-    font-size: 1.5rem !important;
+    font-size: 15rem !important;
   }
 
   .MuiAlert-icon {
-    font-size: 40px !important;
+    font-size: 400px !important;
   }
 
   .MuiAlert-standardError .MuiAlert-icon,
   .MuiAlert-filledError .MuiAlert-icon {
-    font-size: 48px !important;
+    font-size: 480px !important;
   }
 }
 
