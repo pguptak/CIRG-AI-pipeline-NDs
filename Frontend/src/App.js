@@ -14,6 +14,7 @@ import {
   Grid,
   Snackbar,
   Chip,
+  Paper,
 } from '@mui/material';
 import {
   Pets as PetsIcon,
@@ -24,7 +25,8 @@ import {
   CheckCircle as CheckCircleIcon,
   Error as ErrorIcon,
   Face as FaceIcon,
-  Block as BlockIcon
+  Block as BlockIcon,
+  Warning as WarningIcon,
 } from '@mui/icons-material';
 import Webcam from 'react-webcam';
 import { 
@@ -37,7 +39,7 @@ import {
 import config from './config';
 import './App.css';
 
-// Theme setup
+// Theme setup with larger components
 const theme = createTheme({
   palette: {
     primary: { main: '#2196f3' },
@@ -49,9 +51,66 @@ const theme = createTheme({
   },
   typography: {
     fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+    h3: {
+      fontSize: '3.5rem',
+      fontWeight: 800,
+    },
+    h4: {
+      fontSize: '2.8rem',
+      fontWeight: 700,
+    },
+    h5: {
+      fontSize: '2.2rem',
+      fontWeight: 600,
+    },
+    h6: {
+      fontSize: '1.8rem',
+      fontWeight: 500,
+    },
+    body1: {
+      fontSize: '1.4rem',
+    },
+    body2: {
+      fontSize: '1.2rem',
+    },
+  },
+  components: {
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          fontSize: '1.4rem',
+          padding: '16px 32px',
+          minHeight: '56px',
+        },
+      },
+    },
+    MuiCard: {
+      styleOverrides: {
+        root: {
+          padding: '24px',
+          borderRadius: '20px',
+        },
+      },
+    },
+    MuiAlert: {
+      styleOverrides: {
+        root: {
+          fontSize: '1.6rem',
+          padding: '24px 32px',
+          borderRadius: '16px',
+        },
+        icon: {
+          fontSize: '3rem',
+        },
+        message: {
+          fontSize: '1.6rem',
+          fontWeight: 600,
+        },
+      },
+    },
   },
   shape: {
-    borderRadius: 12,
+    borderRadius: 16,
   },
 });
 
@@ -59,7 +118,6 @@ const theme = createTheme({
 const callDirectAutismAPI = async (imageFile) => {
   const formData = new FormData();
   formData.append('file', imageFile);
-  
   try {
     console.log('🔄 Making direct call to autism detection API...');
     const response = await fetch('https://autism-detection-backend-667306373563.europe-west1.run.app/predict/', {
@@ -117,7 +175,7 @@ const extractAnalysisData = (response) => {
       }
     }
   }
-  
+
   if (response.annotated_image_url && !annotatedAgeUrl) {
     annotatedAgeUrl = `${baseUrl}${response.annotated_image_url}`;
   }
@@ -130,6 +188,87 @@ const extractAnalysisData = (response) => {
   });
 
   return { ageSummary, autismResults, annotatedAgeUrl, autismAnnotatedImageUrl };
+};
+
+// Large Error Display Component
+const LargeErrorBox = ({ title, message, type = 'error' }) => {
+  const getErrorIcon = () => {
+    switch(type) {
+      case 'warning': return <WarningIcon sx={{ fontSize: '5rem', color: '#ff9800' }} />;
+      case 'info': return <ErrorIcon sx={{ fontSize: '5rem', color: '#2196f3' }} />;
+      default: return <ErrorIcon sx={{ fontSize: '5rem', color: '#f44336' }} />;
+    }
+  };
+
+  const getBackgroundColor = () => {
+    switch(type) {
+      case 'warning': return 'linear-gradient(135deg, #fff8e1 0%, #ffecb3 100%)';
+      case 'info': return 'linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%)';
+      default: return 'linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%)';
+    }
+  };
+
+  const getBorderColor = () => {
+    switch(type) {
+      case 'warning': return '#ff9800';
+      case 'info': return '#2196f3';
+      default: return '#f44336';
+    }
+  };
+
+  return (
+    <Paper
+      elevation={6}
+      sx={{
+        background: getBackgroundColor(),
+        border: `4px solid ${getBorderColor()}`,
+        borderRadius: '24px',
+        padding: '48px 40px',
+        margin: '32px 0',
+        textAlign: 'center',
+        boxShadow: `0 12px 40px rgba(0,0,0,0.15)`,
+        minHeight: '200px',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        gap: '24px',
+      }}
+    >
+      {getErrorIcon()}
+      
+      <Box>
+        <Typography
+          variant="h3"
+          sx={{
+            fontSize: '3.2rem',
+            fontWeight: 800,
+            color: getBorderColor(),
+            marginBottom: '16px',
+            textTransform: 'uppercase',
+            letterSpacing: '0.05em',
+            textShadow: '0 2px 4px rgba(0,0,0,0.1)',
+          }}
+        >
+          {title}
+        </Typography>
+        
+        <Typography
+          variant="h5"
+          sx={{
+            fontSize: '2.4rem',
+            fontWeight: 600,
+            color: '#333',
+            lineHeight: 1.4,
+            maxWidth: '800px',
+            margin: '0 auto',
+          }}
+        >
+          {message}
+        </Typography>
+      </Box>
+    </Paper>
+  );
 };
 
 function App() {
@@ -262,7 +401,6 @@ function App() {
       console.log('🔍 Full Pipeline Response:', response);
       
       setPipelineData(response);
-
       const {
         ageSummary,
         autismResults,
@@ -421,17 +559,17 @@ function App() {
   const getStatusIcon = () => {
     switch (analysisStatus) {
       case 'child_autism_screened':
-        return <CheckCircleIcon sx={{ color: '#4caf50' }} />;
+        return <CheckCircleIcon sx={{ color: '#4caf50', fontSize: '4rem' }} />;
       case 'adult_invalid':
-        return <BlockIcon sx={{ color: '#ff9800' }} />;
+        return <BlockIcon sx={{ color: '#ff9800', fontSize: '4rem' }} />;
       case 'rejected_animal':
-        return <PetsIcon sx={{ color: '#f44336' }} />;
+        return <PetsIcon sx={{ color: '#f44336', fontSize: '4rem' }} />;
       case 'rejected_no_face':
-        return <FaceIcon sx={{ color: '#f44336' }} />;
+        return <FaceIcon sx={{ color: '#f44336', fontSize: '4rem' }} />;
       case 'error':
-        return <ErrorIcon sx={{ color: '#f44336' }} />;
+        return <ErrorIcon sx={{ color: '#f44336', fontSize: '4rem' }} />;
       default:
-        return <VisibilityIcon sx={{ color: '#2196f3' }} />;
+        return <VisibilityIcon sx={{ color: '#2196f3', fontSize: '4rem' }} />;
     }
   };
 
@@ -458,7 +596,7 @@ function App() {
     }
   };
 
-  // Confidence indicator chip
+  // Confidence indicator chip (larger)
   const ConfidenceLevel = ({ confidence }) => {
     const confidenceColor = getConfidenceColor(confidence);
     const getColorValue = (color) => {
@@ -474,9 +612,15 @@ function App() {
       return (
         <Chip
           label="N/A"
-          size="small"
+          size="medium"
           variant="outlined"
-          sx={{ borderColor: '#64748b', color: '#64748b' }}
+          sx={{ 
+            borderColor: '#64748b', 
+            color: '#64748b',
+            fontSize: '1.2rem',
+            height: '40px',
+            '& .MuiChip-label': { fontSize: '1.2rem', fontWeight: 600 }
+          }}
         />
       );
     }
@@ -484,12 +628,15 @@ function App() {
     return (
       <Chip
         label={`${confidence.toFixed(1)}%`}
-        size="small"
+        size="medium"
         variant="outlined"
         sx={{
           borderColor: getColorValue(confidenceColor),
           color: getColorValue(confidenceColor),
           fontWeight: 600,
+          fontSize: '1.2rem',
+          height: '40px',
+          '& .MuiChip-label': { fontSize: '1.2rem', fontWeight: 600 }
         }}
       />
     );
@@ -505,36 +652,41 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Box sx={{ minHeight: '100vh', bgcolor: 'background.default', py: 4 }}>
-        <Container maxWidth="lg">
-          <Box textAlign="center" mb={6}>
-            <Typography variant="h3" gutterBottom>
+      <Box sx={{ minHeight: '100vh', bgcolor: 'background.default', py: 6 }}>
+        <Container maxWidth="xl">
+          <Box textAlign="center" mb={8}>
+            <Typography variant="h3" gutterBottom sx={{ fontSize: '4rem', mb: 3 }}>
               AI AUTISM DETECTION
             </Typography>
-            <Typography variant="h6" color="text.secondary">
+            <Typography variant="h5" color="text.secondary" sx={{ fontSize: '2rem' }}>
               Advanced AI-powered autism screening
             </Typography>
           </Box>
 
-          <Grid container spacing={4}>
-            <Grid item xs={12} md={6}>
-              <Card>
-                <CardContent>
-                  <Typography variant="h5" gutterBottom sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                    <CloudUploadIcon /> Upload or Capture Image
+          <Grid container spacing={6}>
+            <Grid item xs={12} lg={6}>
+              <Card sx={{ minHeight: '800px' }}>
+                <CardContent sx={{ padding: '40px' }}>
+                  <Typography variant="h4" gutterBottom sx={{ display: 'flex', alignItems: 'center', gap: 2, mb: 4 }}>
+                    <CloudUploadIcon sx={{ fontSize: '3rem' }} /> Upload or Capture Image
                   </Typography>
 
                   <Box
                     onClick={() => document.getElementById('image-input').click()}
                     sx={{
-                      border: '2px dashed',
+                      border: '4px dashed',
                       borderColor: 'primary.main',
-                      p: 4,
+                      p: 6,
                       textAlign: 'center',
                       cursor: 'pointer',
-                      borderRadius: 2,
+                      borderRadius: 4,
                       bgcolor: '#f0f4ff',
                       '&:hover': { bgcolor: '#e3f2fd' },
+                      minHeight: '200px',
+                      display: 'flex',
+                      flexDirection: 'column',
+                      alignItems: 'center',
+                      justifyContent: 'center',
                     }}
                   >
                     <input
@@ -544,37 +696,40 @@ function App() {
                       onChange={handleImageSelect}
                       style={{ display: 'none' }}
                     />
-                    <CloudUploadIcon sx={{ fontSize: 48, color: 'primary.main', mb: 1 }} />
-                    <Typography variant="h6">Click to upload an image</Typography>
-                    <Typography variant="body2" color="text.secondary">
+                    <CloudUploadIcon sx={{ fontSize: '6rem', color: 'primary.main', mb: 2 }} />
+                    <Typography variant="h5" sx={{ mb: 1 }}>Click to upload an image</Typography>
+                    <Typography variant="h6" color="text.secondary">
                       JPG, PNG, GIF, WebP • Max {formatFileSize(config.UPLOAD.MAX_FILE_SIZE)}
                     </Typography>
                   </Box>
 
-                  <Box mt={3} textAlign="center">
+                  <Box mt={4} textAlign="center">
                     <Button
                       variant="outlined"
                       onClick={() => setShowWebcam(!showWebcam)}
-                      sx={{ mb: 2 }}
+                      sx={{ mb: 3, fontSize: '1.3rem', padding: '12px 24px' }}
+                      size="large"
                     >
                       {showWebcam ? 'Hide Webcam' : 'Show Webcam'}
                     </Button>
+                    
                     {showWebcam && (
                       <Box>
-                        <Box sx={{ border: '1px solid #ccc', borderRadius: 2, p: 1, display: 'inline-block' }}>
+                        <Box sx={{ border: '2px solid #ccc', borderRadius: 3, p: 2, display: 'inline-block' }}>
                           <Webcam
                             audio={false}
                             ref={webcamRef}
                             screenshotFormat="image/jpeg"
-                            width={320}
-                            height={240}
-                            style={{ borderRadius: '8px' }}
+                            width={400}
+                            height={300}
+                            style={{ borderRadius: '12px' }}
                           />
                         </Box>
                         <Button
                           onClick={captureFromWebcam}
                           variant="contained"
-                          sx={{ mt: 2, display: 'block', mx: 'auto' }}
+                          sx={{ mt: 3, display: 'block', mx: 'auto', fontSize: '1.3rem' }}
+                          size="large"
                         >
                           Capture Photo
                         </Button>
@@ -583,32 +738,33 @@ function App() {
                   </Box>
 
                   {previewUrl && (
-                    <Box textAlign="center" mt={3}>
+                    <Box textAlign="center" mt={4}>
                       <img
                         src={previewUrl}
                         alt="Preview"
                         style={{ 
                           maxWidth: '100%', 
-                          maxHeight: 300, 
-                          borderRadius: '8px', 
-                          border: '2px solid #ddd',
-                          boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
+                          maxHeight: 400, 
+                          borderRadius: '16px', 
+                          border: '4px solid #ddd',
+                          boxShadow: '0 8px 24px rgba(0,0,0,0.15)'
                         }}
                       />
-                      <Typography variant="body2" mt={1} color="text.secondary">
+                      <Typography variant="h6" mt={2} color="text.secondary">
                         {selectedImage?.name || 'Captured Image'} 
                         {selectedImage?.size && ` (${formatFileSize(selectedImage.size)})`}
                       </Typography>
                     </Box>
                   )}
 
-                  <Box mt={3} display="flex" gap={2} justifyContent="center">
+                  <Box mt={5} display="flex" gap={3} justifyContent="center">
                     <Button
                       variant="contained"
                       onClick={handleAnalyze}
                       disabled={!selectedImage || isProcessing}
-                      startIcon={isProcessing ? <CircularProgress size={20} /> : <PsychologyIcon />}
+                      startIcon={isProcessing ? <CircularProgress size={24} /> : <PsychologyIcon />}
                       size="large"
+                      sx={{ fontSize: '1.4rem', minWidth: '180px' }}
                     >
                       {isProcessing ? 'Analyzing...' : 'Analyze'}
                     </Button>
@@ -618,70 +774,19 @@ function App() {
                       disabled={isProcessing}
                       startIcon={<RefreshIcon />}
                       size="large"
+                      sx={{ fontSize: '1.4rem', minWidth: '140px' }}
                     >
                       Reset
                     </Button>
                   </Box>
-
-{error && (
-  <Alert 
-    severity="error" 
-    sx={{ 
-      mt: 3,
-      padding: '32px', // Increase Alert padding
-      borderRadius: '16px' // Larger border radius
-    }}
-  >
-    <Box sx={{ 
-      display: 'flex', 
-      alignItems: 'center', 
-      gap: 3, // Increase gap from 1 to 3
-      minHeight: '80px' // Set minimum height for larger box
-    }}>
-      <ErrorIcon sx={{ 
-        fontSize: '4rem', // Much larger error icon
-        color: '#d32f2f' 
-      }} />
-      <Box sx={{ 
-        flex: 1,
-        padding: '16px 0' // Add vertical padding to inner box
-      }}>
-        <Typography 
-          variant="h4" 
-          sx={{ 
-            fontWeight: 700,
-            fontSize: '2.5rem', // Very large title
-            color: '#d32f2f',
-            marginBottom: '12px',
-            lineHeight: 1.2
-          }}
-        >
-          Analysis Failed
-        </Typography>
-        <Typography 
-          variant="h5"
-          sx={{ 
-            fontSize: '1.8rem', // Large error message text
-            fontWeight: 500,
-            color: '#f44336',
-            lineHeight: 1.3
-          }}
-        >
-          {error}
-        </Typography>
-      </Box>
-    </Box>
-  </Alert>
-)}
-
                 </CardContent>
               </Card>
             </Grid>
 
-            <Grid item xs={12} md={6}>
-              <Card>
-                <CardContent>
-                  <Typography variant="h5" gutterBottom sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+            <Grid item xs={12} lg={6}>
+              <Card sx={{ minHeight: '800px' }}>
+                <CardContent sx={{ padding: '40px' }}>
+                  <Typography variant="h4" gutterBottom sx={{ display: 'flex', alignItems: 'center', gap: 2, mb: 4 }}>
                     {getStatusIcon()} Analysis Results
                   </Typography>
 
@@ -692,33 +797,53 @@ function App() {
                       analysisStatus.startsWith('rejected') || analysisStatus === 'error' || analysisStatus === 'autism_failed' ? 'error' :
                       'info'
                     }
-                    sx={{ mb: 3 }}
+                    sx={{ mb: 4, fontSize: '1.5rem', padding: '20px 32px' }}
                   >
-                    <Typography variant="body2" sx={{ fontWeight: 600 }}>
+                    <Typography variant="h6" sx={{ fontWeight: 600, fontSize: '1.8rem' }}>
                       {getStatusMessage()}
                     </Typography>
                   </Alert>
 
+                  {/* Large Error Display */}
+                  {error && (
+                    <LargeErrorBox 
+                      title="Analysis Failed"
+                      message={error}
+                      type="error"
+                    />
+                  )}
+
+                  {/* Processing Status */}
                   {isProcessing && (
-                    <Box textAlign="center" py={4}>
-                      <CircularProgress size={60} sx={{ mb: 2 }} />
-                      <Typography variant="h6">
+                    <Paper
+                      elevation={3}
+                      sx={{
+                        textAlign: 'center',
+                        py: 8,
+                        px: 4,
+                        borderRadius: '20px',
+                        background: 'linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%)',
+                        border: '2px solid #2196f3',
+                      }}
+                    >
+                      <CircularProgress size={80} sx={{ mb: 4 }} />
+                      <Typography variant="h4" sx={{ mb: 2 }}>
                         {analysisStatus === 'processing_autism' ? 'Processing autism analysis...' : 'Processing image...'}
                       </Typography>
-                      <Typography variant="body2" color="text.secondary">
+                      <Typography variant="h6" color="text.secondary">
                         {analysisStatus === 'processing_autism' ? 
                           'Analyzing facial features for autism indicators...' :
                           'Face detection → Age classification → Autism analysis'}
                       </Typography>
-                    </Box>
+                    </Paper>
                   )}
 
-                  {/* --- Priority image display --- */}
+                  {/* Priority image display */}
                   {!isProcessing && (() => {
                     if (analysisStatus === 'child_autism_screened' && autismAnnotatedImageUrl) {
                       return (
-                        <Box textAlign="center" mb={3}>
-                          <Typography variant="body2" sx={{ mb: 1, fontWeight: 600, color: '#4caf50' }}>
+                        <Box textAlign="center" mb={4}>
+                          <Typography variant="h6" sx={{ mb: 2, fontWeight: 600, color: '#4caf50', fontSize: '1.6rem' }}>
                             ✅ Complete Analysis - Autism Detection Result
                           </Typography>
                           <img
@@ -726,27 +851,26 @@ function App() {
                             alt="Autism Analysis Result"
                             style={{
                               maxWidth: '100%',
-                              maxHeight: 400,
-                              borderRadius: 8,
-                              border: '3px solid #4caf50',
-                              boxShadow: '0 4px 12px rgba(76,175,80,0.3)'
+                              maxHeight: 500,
+                              borderRadius: 16,
+                              border: '4px solid #4caf50',
+                              boxShadow: '0 8px 24px rgba(76,175,80,0.3)'
                             }}
                             crossOrigin="anonymous"
                             onError={() => console.error('Failed to load autism image')}
                           />
-                          <Typography variant="caption" sx={{ display: 'block', mt: 1, color: '#4caf50' }}>
+                          <Typography variant="body1" sx={{ display: 'block', mt: 2, color: '#4caf50', fontSize: '1.3rem' }}>
                             Final result: Autism detection with facial region analysis
                           </Typography>
                         </Box>
                       );
                     }
-
                     if (ageAnnotatedImageUrl) {
                       const borderColor = analysisStatus === 'adult_invalid' ? '#ff9800' : '#2196f3';
                       const statusText = analysisStatus === 'adult_invalid' ? 'Adult Detected - Autism Blocked' : 'Age Classification Complete';
                       return (
-                        <Box textAlign="center" mb={3}>
-                          <Typography variant="body2" sx={{ mb: 1, fontWeight: 600, color: borderColor }}>
+                        <Box textAlign="center" mb={4}>
+                          <Typography variant="h6" sx={{ mb: 2, fontWeight: 600, color: borderColor, fontSize: '1.6rem' }}>
                             {analysisStatus === 'adult_invalid' ? '🔞' : '👥'} {statusText}
                           </Typography>
                           <img
@@ -754,15 +878,15 @@ function App() {
                             alt="Age Classification Result"
                             style={{
                               maxWidth: '100%',
-                              maxHeight: 400,
-                              borderRadius: 8,
-                              border: `3px solid ${borderColor}`,
-                              boxShadow: `0 4px 12px rgba(${borderColor === '#ff9800' ? '255,152,0' : '33,150,243'},0.3)`
+                              maxHeight: 500,
+                              borderRadius: 16,
+                              border: `4px solid ${borderColor}`,
+                              boxShadow: `0 8px 24px rgba(${borderColor === '#ff9800' ? '255,152,0' : '33,150,243'},0.3)`
                             }}
                             crossOrigin="anonymous"
                             onError={() => console.error('Failed to load age image')}
                           />
-                          <Typography variant="caption" sx={{ display: 'block', mt: 1, color: borderColor }}>
+                          <Typography variant="body1" sx={{ display: 'block', mt: 2, color: borderColor, fontSize: '1.3rem' }}>
                             {analysisStatus === 'adult_invalid' ? 
                               'Adults detected - autism analysis not performed' : 
                               'Age analysis complete'}
@@ -770,109 +894,90 @@ function App() {
                         </Box>
                       );
                     }
-
                     if (analysisStatus.startsWith('rejected') && previewUrl) {
                       return (
-                        <Box textAlign="center" mb={3}>
-                          <Typography variant="body2" sx={{ mb: 1, fontWeight: 600, color: '#f44336' }}>
-                            ❌ {analysisStatus === 'rejected_animal' ? 'Animal Detected' : 'Invalid Face'}
-                          </Typography>
-                          <img
-                            src={previewUrl}
-                            alt="Rejected Image"
-                            style={{
-                              maxWidth: '100%',
-                              maxHeight: 400,
-                              borderRadius: 8,
-                              border: '3px solid #f44336',
-                              boxShadow: '0 4px 12px rgba(244,67,54,0.3)',
-                              filter: 'grayscale(50%)'
-                            }}
-                          />
-                          <Typography variant="caption" sx={{ display: 'block', mt: 1, color: '#f44336' }}>
-                            {analysisStatus === 'rejected_animal' ? 
-                              'Animal face detected - analysis blocked' : 
-                              'No valid human face found'}
-                          </Typography>
-                        </Box>
+                        <LargeErrorBox
+                          title={analysisStatus === 'rejected_animal' ? 'Animal Detected' : 'Invalid Face'}
+                          message={analysisStatus === 'rejected_animal' ? 
+                            'Animal face detected - analysis blocked. Please upload a human face.' : 
+                            'No valid human face found. Please ensure a clear human face is visible.'}
+                          type="warning"
+                        />
                       );
                     }
-
                     return (
-                      <Box textAlign="center" py={4}>
-                        <Typography variant="body1" color="text.secondary">
+                      <Paper
+                        elevation={2}
+                        sx={{
+                          textAlign: 'center',
+                          py: 8,
+                          px: 4,
+                          borderRadius: '20px',
+                          background: 'linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%)',
+                        }}
+                      >
+                        <Typography variant="h5" color="text.secondary" sx={{ fontSize: '1.8rem' }}>
                           Upload or capture an image to begin AI analysis
                         </Typography>
-                      </Box>
+                      </Paper>
                     );
                   })()}
 
                   {/* Detailed autism results */}
                   {!isProcessing && results && Array.isArray(results) && results.length > 0 && (
-                    <Box>
-                      <Typography variant="h6" gutterBottom>Detailed Results:</Typography>
-                      <Box sx={{ bgcolor: '#f5f5f5', borderRadius: 2, p: 2 }}>
+                    <Box mt={4}>
+                      <Typography variant="h5" gutterBottom sx={{ fontSize: '2rem' }}>Detailed Results:</Typography>
+                      <Paper elevation={2} sx={{ bgcolor: '#f5f5f5', borderRadius: 3, p: 4 }}>
                         {results.map((result, idx) => (
-                          <Box key={idx} sx={{ mb: 1 }}>
+                          <Box key={idx} sx={{ mb: 3 }}>
                             {result.region && (
-                              <Typography variant="body2">
+                              <Typography variant="h6" sx={{ fontSize: '1.4rem' }}>
                                 <strong>{result.region}:</strong> {result.label} 
                                 {result.confidence && (
-                                  <Box component="span" sx={{ ml: 1 }}>
+                                  <Box component="span" sx={{ ml: 2 }}>
                                     <ConfidenceLevel confidence={result.confidence} />
                                   </Box>
                                 )}
                               </Typography>
                             )}
                             {result.final_decision && (
-                              <Typography variant="body1" sx={{ fontWeight: 600, color: 'primary.main', mt: 1 }}>
+                              <Typography variant="h5" sx={{ fontWeight: 600, color: 'primary.main', mt: 2, fontSize: '1.6rem' }}>
                                 <strong>Final Decision:</strong> {result.final_decision}
                               </Typography>
                             )}
                             {result.summary && (
-                              <Typography variant="body2">
+                              <Typography variant="body1" sx={{ fontSize: '1.3rem' }}>
                                 <strong>Summary:</strong> {result.summary}
                               </Typography>
                             )}
                             {result.status && (
-                              <Typography variant="body2" color="text.secondary">
+                              <Typography variant="body1" color="text.secondary" sx={{ fontSize: '1.2rem' }}>
                                 {result.status}
                               </Typography>
                             )}
                           </Box>
                         ))}
-                      </Box>
+                      </Paper>
                     </Box>
                   )}
 
                   {ageAnalysis.has_faces && (
-                    <Box sx={{ mt: 3, p: 2, bgcolor: '#f8fafc', borderRadius: 2 }}>
-                      <Typography variant="subtitle2" sx={{ fontWeight: 600, mb: 1 }}>
+                    <Box sx={{ mt: 4, p: 3, bgcolor: '#f8fafc', borderRadius: 3 }}>
+                      <Typography variant="h6" sx={{ fontWeight: 600, mb: 2, fontSize: '1.5rem' }}>
                         Age Analysis Summary
                       </Typography>
-                      <Typography variant="body2">
+                      <Typography variant="body1" sx={{ fontSize: '1.3rem' }}>
                         Total Faces: <strong>{(ageAnalysis.kids_count || 0) + (ageAnalysis.adults_count || 0)}</strong><br />
                         Kids (≤18): <strong style={{ color: '#4caf50' }}>{ageAnalysis.kids_count || 0}</strong><br />
                         Adults (18+): <strong style={{ color: '#f44336' }}>{ageAnalysis.adults_count || 0}</strong>
                       </Typography>
                       {ageAnalysis.annotations && ageAnalysis.annotations.length > 0 && (
-                        <Box sx={{ mt: 1 }}>
-                          <Typography variant="caption" color="text.secondary">
+                        <Box sx={{ mt: 2 }}>
+                          <Typography variant="body2" color="text.secondary" sx={{ fontSize: '1.1rem' }}>
                             Detected ages: {ageAnalysis.annotations.map(ann => ann.age).join(', ')}
                           </Typography>
                         </Box>
                       )}
-                    </Box>
-                  )}
-
-                  {pipelineData && process.env.NODE_ENV === 'development' && (
-                    <Box mt={3} p={2} bgcolor="#f0f0f0" borderRadius={2}>
-                      <Typography variant="caption" color="text.secondary">
-                        Debug: Status = {pipelineData.status}, Valid = {String(pipelineData.valid)}
-                        {directAutismResults && ', Direct API: ✅'}
-                        {autismAnnotatedImageUrl && ', Autism Image: ✅'}
-                        {ageAnnotatedImageUrl && ', Age Image: ✅'}
-                      </Typography>
                     </Box>
                   )}
                 </CardContent>
@@ -881,8 +986,8 @@ function App() {
           </Grid>
 
           {/* Footer */}
-          <Box textAlign="center" mt={6}>
-            <Typography variant="body2" color="text.secondary">
+          <Box textAlign="center" mt={8}>
+            <Typography variant="h6" color="text.secondary" sx={{ fontSize: '1.4rem' }}>
               Developed by Dr Prasant Gupta And Team
             </Typography>
           </Box>
@@ -899,8 +1004,11 @@ function App() {
         <Alert
           onClose={handleCloseSnackbar}
           severity={snackbar.severity}
-          sx={{ width: '100%' }}
-          icon={snackbar.severity === 'success' ? <CheckCircleIcon /> : <ErrorIcon />}
+          sx={{ 
+            width: '100%',
+            fontSize: '1.3rem',
+            '& .MuiAlert-message': { fontSize: '1.3rem' }
+          }}
         >
           {snackbar.message}
         </Alert>
