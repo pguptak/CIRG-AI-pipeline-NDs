@@ -123,23 +123,139 @@ body, html, #root, .app-container {
   animation: pulse 1.5s ease-in-out infinite;
 }
 
+/* Enhanced Alert styling with larger error messages */
+.MuiAlert-root {
+  border-radius: 15px;
+  padding: 20px 24px;
+}
+
+.MuiAlert-icon {
+  font-size: 48px;
+}
+
+/* Enhanced error message styling - LARGER TEXT */
+.MuiAlert-message {
+  font-size: 1.5rem !important;
+  font-weight: 600 !important;
+  line-height: 1.4 !important;
+  letter-spacing: 0.02em !important;
+}
+
+/* Make error alerts specifically larger and more prominent */
+.MuiAlert-standardError .MuiAlert-message,
+.MuiAlert-filledError .MuiAlert-message,
+.MuiAlert-outlinedError .MuiAlert-message {
+  font-size: 1.8rem !important;
+  font-weight: 700 !important;
+  color: #c62828 !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Error icon sizing */
+.MuiAlert-standardError .MuiAlert-icon,
+.MuiAlert-filledError .MuiAlert-icon,
+.MuiAlert-outlinedError .MuiAlert-icon {
+  font-size: 56px !important;
+  color: #d32f2f !important;
+}
+
+/* Error alert container enhancement */
+.MuiAlert-standardError,
+.MuiAlert-filledError {
+  padding: 28px 32px !important;
+  border-radius: 16px !important;
+  box-shadow: 0 6px 24px rgba(244, 67, 54, 0.25) !important;
+  border: 2px solid #f44336 !important;
+  background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 15%, #ffebee 100%) !important;
+}
+
+/* Warning alerts */
+.MuiAlert-standardWarning .MuiAlert-message,
+.MuiAlert-filledWarning .MuiAlert-message {
+  font-size: 1.6rem !important;
+  font-weight: 650 !important;
+}
+
+/* Success alerts */
+.MuiAlert-standardSuccess .MuiAlert-message,
+.MuiAlert-filledSuccess .MuiAlert-message {
+  font-size: 1.5rem !important;
+  font-weight: 600 !important;
+}
+
+/* Info alerts */
+.MuiAlert-standardInfo .MuiAlert-message,
+.MuiAlert-filledInfo .MuiAlert-message {
+  font-size: 1.4rem !important;
+  font-weight: 500 !important;
+}
+
+/* Custom error classes for different severity levels */
+.error-critical {
+  animation: shake 0.5s ease-in-out;
+}
+
+.error-critical .MuiAlert-message {
+  font-size: 2rem !important;
+  font-weight: 800 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+
+.error-large .MuiAlert-message {
+  font-size: 1.9rem !important;
+  font-weight: 750 !important;
+}
+
+.error-xl .MuiAlert-message {
+  font-size: 2.2rem !important;
+  font-weight: 800 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+}
+
 /* Responsive adjustments */
 @media (max-width: 600px) {
   .MuiContainer-root {
     padding-left: 16px;
     padding-right: 16px;
   }
-
+  
   .MuiCard-root {
     margin-bottom: 16px;
   }
-
+  
   .MuiButton-root {
     min-width: 120px;
   }
   
   .main-content {
     padding: 1rem;
+  }
+
+  /* Responsive error message sizing */
+  .MuiAlert-message {
+    font-size: 1.3rem !important;
+  }
+
+  .MuiAlert-standardError .MuiAlert-message,
+  .MuiAlert-filledError .MuiAlert-message {
+    font-size: 1.5rem !important;
+  }
+
+  .MuiAlert-icon {
+    font-size: 40px !important;
+  }
+
+  .MuiAlert-standardError .MuiAlert-icon,
+  .MuiAlert-filledError .MuiAlert-icon {
+    font-size: 48px !important;
   }
 }
 
@@ -170,15 +286,6 @@ body, html, #root, .app-container {
 /* Button loading state */
 .MuiButton-root:disabled {
   opacity: 0.6;
-}
-
-/* Alert styling */
-.MuiAlert-root {
-  border-radius: 15px;
-}
-
-.MuiAlert-icon {
-  font-size: 40px;
 }
 
 /* Typography adjustments */
@@ -300,6 +407,33 @@ p {
   margin-top: 1rem;
 }
 
+/* Error message typography hierarchy */
+.error-title {
+  font-size: 2rem !important;
+  font-weight: 800 !important;
+  color: #c62828 !important;
+  margin-bottom: 12px !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.03em !important;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+}
+
+.error-description {
+  font-size: 1.6rem !important;
+  font-weight: 600 !important;
+  color: #d32f2f !important;
+  line-height: 1.4 !important;
+  margin-bottom: 8px !important;
+}
+
+.error-details {
+  font-size: 1.3rem !important;
+  font-weight: 500 !important;
+  color: #757575 !important;
+  margin-top: 12px !important;
+  font-style: italic !important;
+}
+
 /* Ensure all containers allow scrolling */
 .MuiBox-root[style*="overflow: hidden"] {
   overflow: visible !important;
@@ -318,4 +452,24 @@ body {
 .main-content,
 .MuiContainer-root {
   overflow: visible !important;
+}
+
+/* Snackbar error messages enhancement */
+.MuiSnackbarContent-root .MuiSnackbarContent-message {
+  font-size: 1.3rem !important;
+  font-weight: 600 !important;
+}
+
+.MuiSnackbar-root .MuiAlert-message {
+  font-size: 1.4rem !important;
+  font-weight: 600 !important;
+}
+
+/* Alert action buttons */
+.MuiAlert-action {
+  padding-left: 16px !important;
+}
+
+.MuiAlert-action .MuiIconButton-root {
+  font-size: 1.5rem !important;
 }
