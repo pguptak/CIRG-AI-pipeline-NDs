@@ -1,4 +1,4 @@
-/* Global font and base styles */
+/* Global font and base styles - ENLARGED */
 body, html, #root, .app-container {
   height: 100%;
   margin: 0;
@@ -8,6 +8,7 @@ body, html, #root, .app-container {
   color: #191b22;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-size: 18px; /* Increased base font size */
 }
 
 .app-container {
@@ -22,23 +23,25 @@ body, html, #root, .app-container {
 .main-content {
   max-height: none;
   overflow-y: visible;
-  padding: 2rem;
+  padding: 3rem; /* Increased padding */
   margin: 0 auto;
   width: 100%;
-  max-width: 1200px;
+  max-width: 1400px; /* Increased max-width */
 }
 
-/* Upload area - no purple borders */
+/* Upload area - LARGER */
 .upload-area {
-  border: 2px dashed #cbd5e1 !important;
+  border: 4px dashed #cbd5e1 !important; /* Thicker border */
   background: #f1f5f9 !important;
-  border-radius: 8px !important;
+  border-radius: 16px !important; /* Larger border radius */
   transition: border-color 0.2s;
-  padding: 2rem;
-  margin-bottom: 2rem;
+  padding: 4rem; /* Much larger padding */
+  margin-bottom: 3rem; /* Increased margin */
   color: #475569;
   text-align: center;
   user-select: none;
+  min-height: 250px; /* Set minimum height */
+  font-size: 1.4rem; /* Larger font size */
 }
 
 .upload-area:hover,
@@ -66,50 +69,56 @@ body, html, #root, .app-container {
   overflow: visible !important;
 }
 
-/* Results styling */
+/* Results styling - LARGER */
 .results {
   background: #f8f9fa;
-  border-radius: 8px;
-  padding: 16px;
-  margin: 16px 0;
+  border-radius: 16px; /* Larger border radius */
+  padding: 32px; /* Increased padding */
+  margin: 32px 0; /* Increased margin */
+  font-size: 1.3rem; /* Larger font size */
 }
 
 .results div {
-  margin-bottom: 8px;
-  padding: 8px;
+  margin-bottom: 16px; /* Increased margin */
+  padding: 16px; /* Increased padding */
   background: white;
-  border-radius: 4px;
-  border-left: 4px solid #2196f3;
+  border-radius: 8px;
+  border-left: 6px solid #2196f3; /* Thicker border */
+  font-size: 1.2rem; /* Larger font size */
 }
 
 .results div:last-child {
   margin-bottom: 0;
   border-left-color: #ff9800;
   font-weight: bold;
+  font-size: 1.4rem; /* Even larger for last item */
 }
 
-/* Confidence level styling */
+/* Confidence level styling - LARGER */
 .confidence-high {
   color: #4caf50;
-  font-weight: 600;
+  font-weight: 700; /* Increased font weight */
+  font-size: 1.3rem; /* Larger font size */
 }
 
 .confidence-medium {
   color: #ff9800;
-  font-weight: 600;
+  font-weight: 700;
+  font-size: 1.3rem;
 }
 
 .confidence-low {
   color: #f44336;
-  font-weight: 600;
+  font-weight: 700;
+  font-size: 1.3rem;
 }
 
-/* Image container styling */
+/* Image container styling - LARGER */
 #imageContainer img {
   max-width: 100%;
   height: auto;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border-radius: 16px; /* Larger border radius */
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2); /* Stronger shadow */
 }
 
 /* Loading animation */
@@ -123,153 +132,209 @@ body, html, #root, .app-container {
   animation: pulse 1.5s ease-in-out infinite;
 }
 
-/* Enhanced Alert styling with larger error messages */
+/* MASSIVELY Enhanced Alert styling with MUCH larger error messages */
 .MuiAlert-root {
-  border-radius: 150px;
-  padding: 200px 240px;
+  border-radius: 20px !important; /* Much larger border radius */
+  padding: 40px 48px !important; /* Much larger padding */
+  margin: 32px 0 !important; /* Increased margin */
+  font-size: 2rem !important; /* Much larger base font size */
+  min-height: 120px !important; /* Set minimum height */
 }
 
 .MuiAlert-icon {
-  font-size: 480px;
+  font-size: 5rem !important; /* HUGE icon size */
+  margin-right: 24px !important; /* More spacing */
 }
 
-/* Enhanced error message styling - LARGER TEXT */
-.MuiAlert-message {
-  font-size: 15rem !important;
-  font-weight: 600 !important;
-  line-height: 14 !important;
+/* MASSIVE error message styling */
+.MuiAlert-message,
+.MuiAlert-message *,
+.MuiAlert-message .MuiTypography-root,
+.MuiAlert-message .MuiTypography-body1,
+.MuiAlert-message .MuiTypography-body2,
+.MuiAlert-message span,
+.MuiAlert-message p,
+.MuiAlert-message div {
+  font-size: 2.2rem !important; /* HUGE font size */
+  font-weight: 700 !important; /* Very bold */
+  line-height: 1.3 !important;
   letter-spacing: 0.02em !important;
 }
 
-/* Make error alerts specifically larger and more prominent */
+/* Make error alerts EXTREMELY prominent */
+.MuiAlert-standardError,
+.MuiAlert-filledError,
+.MuiAlert-outlinedError {
+  padding: 48px 56px !important; /* MASSIVE padding */
+  border-radius: 24px !important; /* Very rounded */
+  box-shadow: 0 12px 48px rgba(244, 67, 54, 0.35) !important; /* Strong shadow */
+  border: 4px solid #f44336 !important; /* Thick border */
+  background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 15%, #ffebee 100%) !important;
+  min-height: 180px !important; /* Very tall */
+}
+
 .MuiAlert-standardError .MuiAlert-message,
 .MuiAlert-filledError .MuiAlert-message,
 .MuiAlert-outlinedError .MuiAlert-message {
-  font-size: 18rem !important;
-  font-weight: 700 !important;
+  font-size: 2.8rem !important; /* ENORMOUS error text */
+  font-weight: 800 !important; /* Extra bold */
   color: #c62828 !important;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) !important;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.15) !important;
 }
 
-/* Error icon sizing */
+/* Error icon MASSIVE sizing */
 .MuiAlert-standardError .MuiAlert-icon,
 .MuiAlert-filledError .MuiAlert-icon,
 .MuiAlert-outlinedError .MuiAlert-icon {
-  font-size: 56px !important;
+  font-size: 6rem !important; /* GIGANTIC error icon */
   color: #d32f2f !important;
 }
 
-/* Error alert container enhancement */
-.MuiAlert-standardError,
-.MuiAlert-filledError {
-  padding: 28px 32px !important;
-  border-radius: 16px !important;
-  box-shadow: 0 6px 24px rgba(244, 67, 54, 0.25) !important;
-  border: 2px solid #f44336 !important;
-  background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 15%, #ffebee 100%) !important;
+/* Warning alerts - LARGER */
+.MuiAlert-standardWarning,
+.MuiAlert-filledWarning {
+  padding: 40px 48px !important;
 }
 
-/* Warning alerts */
 .MuiAlert-standardWarning .MuiAlert-message,
 .MuiAlert-filledWarning .MuiAlert-message {
-  font-size: 16rem !important;
+  font-size: 2.4rem !important;
+  font-weight: 700 !important;
+}
+
+.MuiAlert-standardWarning .MuiAlert-icon,
+.MuiAlert-filledWarning .MuiAlert-icon {
+  font-size: 5rem !important;
+}
+
+/* Success alerts - LARGER */
+.MuiAlert-standardSuccess,
+.MuiAlert-filledSuccess {
+  padding: 36px 44px !important;
+}
+
+.MuiAlert-standardSuccess .MuiAlert-message,
+.MuiAlert-filledSuccess .MuiAlert-message {
+  font-size: 2.2rem !important;
   font-weight: 650 !important;
 }
 
-/* Success alerts */
-.MuiAlert-standardSuccess .MuiAlert-message,
-.MuiAlert-filledSuccess .MuiAlert-message {
-  font-size: 15rem !important;
+.MuiAlert-standardSuccess .MuiAlert-icon,
+.MuiAlert-filledSuccess .MuiAlert-icon {
+  font-size: 4.5rem !important;
+}
+
+/* Info alerts - LARGER */
+.MuiAlert-standardInfo,
+.MuiAlert-filledInfo {
+  padding: 32px 40px !important;
+}
+
+.MuiAlert-standardInfo .MuiAlert-message,
+.MuiAlert-filledInfo .MuiAlert-message {
+  font-size: 2rem !important;
   font-weight: 600 !important;
 }
 
-/* Info alerts */
-.MuiAlert-standardInfo .MuiAlert-message,
-.MuiAlert-filledInfo .MuiAlert-message {
-  font-size: 1.4rem !important;
-  font-weight: 500 !important;
+.MuiAlert-standardInfo .MuiAlert-icon,
+.MuiAlert-filledInfo .MuiAlert-icon {
+  font-size: 4rem !important;
 }
 
 /* Custom error classes for different severity levels */
 .error-critical {
   animation: shake 0.5s ease-in-out;
+  min-height: 240px !important; /* Even taller for critical */
 }
 
 .error-critical .MuiAlert-message {
-  font-size: 20rem !important;
-  font-weight: 800 !important;
+  font-size: 3.5rem !important; /* MASSIVE for critical errors */
+  font-weight: 900 !important;
   text-transform: uppercase !important;
-  letter-spacing: 0.05em !important;
+  letter-spacing: 0.08em !important;
 }
 
 @keyframes shake {
   0%, 100% { transform: translateX(0); }
-  25% { transform: translateX(-5px); }
-  75% { transform: translateX(5px); }
+  25% { transform: translateX(-8px); }
+  75% { transform: translateX(8px); }
 }
 
 .error-large .MuiAlert-message {
-  font-size: 19rem !important;
-  font-weight: 750 !important;
+  font-size: 3rem !important;
+  font-weight: 800 !important;
 }
 
 .error-xl .MuiAlert-message {
-  font-size: 22rem !important;
-  font-weight: 800 !important;
+  font-size: 3.8rem !important;
+  font-weight: 900 !important;
   text-transform: uppercase !important;
-  letter-spacing: 0.05em !important;
+  letter-spacing: 0.1em !important;
 }
 
-/* Responsive adjustments */
+/* Responsive adjustments - STILL LARGE ON MOBILE */
 @media (max-width: 600px) {
   .MuiContainer-root {
-    padding-left: 160px;
-    padding-right: 160px;
+    padding-left: 20px;
+    padding-right: 20px;
   }
   
   .MuiCard-root {
-    margin-bottom: 160px;
+    margin-bottom: 24px;
   }
   
   .MuiButton-root {
-    min-width: 1200px;
+    min-width: 150px;
+    font-size: 1.2rem !important;
   }
   
   .main-content {
-    padding: 10rem;
+    padding: 2rem;
   }
 
-  /* Responsive error message sizing */
-  .MuiAlert-message {
-    font-size: 130rem !important;
+  /* Responsive error message sizing - STILL BIG */
+  .MuiAlert-message,
+  .MuiAlert-message * {
+    font-size: 1.8rem !important;
   }
 
   .MuiAlert-standardError .MuiAlert-message,
   .MuiAlert-filledError .MuiAlert-message {
-    font-size: 15rem !important;
+    font-size: 2.2rem !important;
   }
 
   .MuiAlert-icon {
-    font-size: 400px !important;
+    font-size: 3.5rem !important;
   }
 
   .MuiAlert-standardError .MuiAlert-icon,
   .MuiAlert-filledError .MuiAlert-icon {
-    font-size: 480px !important;
+    font-size: 4.5rem !important;
+  }
+
+  .MuiAlert-root {
+    padding: 32px 28px !important;
+    min-height: 140px !important;
+  }
+
+  .upload-area {
+    padding: 3rem;
+    font-size: 1.2rem;
+    min-height: 200px;
   }
 }
 
-/* Webcam styling */
+/* Webcam styling - LARGER */
 .webcam-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 16px;
+  gap: 24px; /* Increased gap */
 }
 
 .webcam-container video {
-  border-radius: 8px;
-  border: 2px solid #e0e0e0;
+  border-radius: 16px; /* Larger border radius */
+  border: 4px solid #e0e0e0; /* Thicker border */
 }
 
 /* Snackbar positioning */
@@ -277,9 +342,20 @@ body, html, #root, .app-container {
   z-index: 1400;
 }
 
-/* Card elevation on hover */
+/* Enhanced Snackbar messages */
+.MuiSnackbarContent-root .MuiSnackbarContent-message {
+  font-size: 1.6rem !important;
+  font-weight: 600 !important;
+}
+
+.MuiSnackbar-root .MuiAlert-message {
+  font-size: 1.7rem !important;
+  font-weight: 650 !important;
+}
+
+/* Card elevation on hover - ENHANCED */
 .MuiCard-root:hover {
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.2); /* Stronger shadow */
   transition: box-shadow 0.3s ease-in-out;
 }
 
@@ -288,13 +364,37 @@ body, html, #root, .app-container {
   opacity: 0.6;
 }
 
-/* Typography adjustments */
+/* Typography adjustments - LARGER */
 .MuiTypography-h3 {
-  font-weight: 700;
+  font-weight: 800; /* Increased font weight */
   background: linear-gradient(135deg, #2196f3 0%, #1976d2 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  font-size: 4.5rem !important; /* Much larger h3 */
+}
+
+.MuiTypography-h4 {
+  font-size: 3.2rem !important;
+  font-weight: 700 !important;
+}
+
+.MuiTypography-h5 {
+  font-size: 2.6rem !important;
+  font-weight: 600 !important;
+}
+
+.MuiTypography-h6 {
+  font-size: 2rem !important;
+  font-weight: 500 !important;
+}
+
+.MuiTypography-body1 {
+  font-size: 1.5rem !important;
+}
+
+.MuiTypography-body2 {
+  font-size: 1.3rem !important;
 }
 
 /* Grid spacing */
@@ -302,81 +402,90 @@ body, html, #root, .app-container {
   margin-top: 0;
 }
 
-/* Card content padding */
+/* Card content padding - INCREASED */
 .MuiCardContent-root {
-  padding: 24px;
+  padding: 40px !important; /* Much larger padding */
 }
 
-/* Image preview styling */
+/* Image preview styling - LARGER */
 .image-preview {
-  margin: 16px 0;
+  margin: 24px 0; /* Increased margin */
   text-align: center;
 }
 
 .image-preview img {
   max-width: 100%;
-  max-height: 300px;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  border: 2px solid #e0e0e0;
+  max-height: 400px; /* Increased height */
+  border-radius: 16px; /* Larger border radius */
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15); /* Stronger shadow */
+  border: 4px solid #e0e0e0; /* Thicker border */
 }
 
-/* Action buttons container */
+/* Action buttons container - LARGER */
 .action-buttons {
   display: flex;
-  gap: 12px;
+  gap: 20px; /* Increased gap */
   justify-content: center;
   flex-wrap: wrap;
-  margin-top: 24px;
+  margin-top: 32px; /* Increased margin */
 }
 
-/* Results section styling */
+/* Results section styling - ENHANCED */
 .results-section {
-  min-height: 200px;
+  min-height: 300px; /* Increased minimum height */
   display: flex;
   flex-direction: column;
   justify-content: center;
+  padding: 32px; /* Added padding */
 }
 
 .results-section .MuiTypography-root {
   text-align: center;
   color: #666;
+  font-size: 1.6rem !important; /* Larger font size */
 }
 
-/* Final decision styling */
+/* Final decision styling - MUCH LARGER */
 .final-decision {
   background: linear-gradient(135deg, #ff9800 0%, #f57c00 100%);
   color: white;
-  padding: 12px 24px;
-  border-radius: 20px;
-  font-weight: 600;
+  padding: 24px 40px; /* Much larger padding */
+  border-radius: 32px; /* Much larger border radius */
+  font-weight: 700; /* Increased font weight */
+  font-size: 2rem !important; /* Much larger font size */
   text-align: center;
-  margin: 16px 0;
-  box-shadow: 0 4px 12px rgba(255, 152, 0, 0.3);
+  margin: 24px 0; /* Increased margin */
+  box-shadow: 0 8px 24px rgba(255, 152, 0, 0.4); /* Stronger shadow */
+  min-height: 80px; /* Set minimum height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .final-decision.autistic {
   background: linear-gradient(135deg, #f44336 0%, #d32f2f 100%);
-  box-shadow: 0 4px 12px rgba(244, 67, 54, 0.3);
+  box-shadow: 0 8px 24px rgba(244, 67, 54, 0.4);
 }
 
 .final-decision.non-autistic {
   background: linear-gradient(135deg, #4caf50 0%, #388e3c 100%);
-  box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+  box-shadow: 0 8px 24px rgba(76, 175, 80, 0.4);
 }
 
-/* Buttons (non-MUI) styling fallback */
+/* Buttons (non-MUI) styling fallback - LARGER */
 button {
   font-family: inherit;
-  font-weight: 500;
+  font-weight: 600; /* Increased font weight */
+  font-size: 1.3rem; /* Larger font size */
   background: #1e293b;
   color: #fff;
   border: none;
-  border-radius: 8px;
-  padding: 0.75rem 1.5rem;
+  border-radius: 12px; /* Larger border radius */
+  padding: 1rem 2rem; /* Increased padding */
   cursor: pointer;
   transition: background-color 0.15s;
   user-select: none;
+  min-height: 56px; /* Set minimum height */
 }
 
 button:hover:not(:disabled),
@@ -389,87 +498,32 @@ button:disabled {
   cursor: not-allowed;
 }
 
-/* General image styling */
+/* General image styling - ENHANCED */
 img {
   display: block;
   max-width: 100%;
   height: auto;
-  border-radius: 8px;
-  margin: 1rem auto;
+  border-radius: 16px; /* Larger border radius */
+  margin: 2rem auto; /* Increased margin */
 }
 
-/* Paragraph styling */
+/* Paragraph styling - LARGER */
 p {
-  max-width: 400px;
+  max-width: 600px; /* Increased max width */
   text-align: center;
   color: #334155;
   font-weight: 500;
-  margin-top: 1rem;
+  font-size: 1.4rem; /* Larger font size */
+  margin-top: 2rem; /* Increased margin */
+  line-height: 1.6; /* Better line height */
 }
 
-/* Error message typography hierarchy */
+/* Error message typography hierarchy - MASSIVE */
 .error-title {
-  font-size: 2rem !important;
-  font-weight: 800 !important;
+  font-size: 3.5rem !important; /* HUGE title */
+  font-weight: 900 !important;
   color: #c62828 !important;
-  margin-bottom: 12px !important;
+  margin-bottom: 20px !important;
   text-transform: uppercase !important;
-  letter-spacing: 0.03em !important;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
-}
-
-.error-description {
-  font-size: 1.6rem !important;
-  font-weight: 600 !important;
-  color: #d32f2f !important;
-  line-height: 1.4 !important;
-  margin-bottom: 8px !important;
-}
-
-.error-details {
-  font-size: 1.3rem !important;
-  font-weight: 500 !important;
-  color: #757575 !important;
-  margin-top: 12px !important;
-  font-style: italic !important;
-}
-
-/* Ensure all containers allow scrolling */
-.MuiBox-root[style*="overflow: hidden"] {
-  overflow: visible !important;
-}
-
-.scroll-container {
-  overflow-y: auto;
-  max-height: none;
-}
-
-body {
-  overflow-y: auto !important;
-}
-
-.app-container,
-.main-content,
-.MuiContainer-root {
-  overflow: visible !important;
-}
-
-/* Snackbar error messages enhancement */
-.MuiSnackbarContent-root .MuiSnackbarContent-message {
-  font-size: 1.3rem !important;
-  font-weight: 600 !important;
-}
-
-.MuiSnackbar-root .MuiAlert-message {
-  font-size: 1.4rem !important;
-  font-weight: 600 !important;
-}
-
-/* Alert action buttons */
-.MuiAlert-action {
-  padding-left: 16px !important;
-}
-
-.MuiAlert-action .MuiIconButton-root {
-  font-size: 1.5rem !important;
-}
+  letter-spacing: 0.05em !important;
+  text-
