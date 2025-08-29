@@ -174,11 +174,11 @@ body, html, #root, .app-container {
 
 /* Alert styling */
 .MuiAlert-root {
-  border-radius: 8px;
+  border-radius: 15px;
 }
 
 .MuiAlert-icon {
-  font-size: 20px;
+  font-size: 40px;
 }
 
 /* Typography adjustments */
