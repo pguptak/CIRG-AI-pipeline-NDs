@@ -2,21 +2,18 @@
 const config = {
   // Backend API Base URL - Animal Filter API as entry point
   API_BASE_URL: process.env.REACT_APP_API_URL || 'https://animal-human-filter-667306373563.europe-west2.run.app',
-  
   // API Endpoints - FIXED TO MATCH YOUR WORKING API
   ENDPOINTS: {
     ANALYZE: '/filter_face/',  // ✅ CORRECTED: This is your working endpoint
     HEALTH: '/health',
     KEEPALIVE: '/keepalive',
   },
-
   // Upload configuration
   UPLOAD: {
     MAX_FILE_SIZE: 10 * 1024 * 1024,  // 10 MB limit
     ALLOWED_TYPES: ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/webp'],
     ACCEPT: 'image/*',
   },
-
   // UI and Animation Tweaks - Optimized for your service cascade
   UI: {
     ANIMATION_DURATION: 300,
@@ -26,7 +23,6 @@ const config = {
     RETRY_DELAY: 12000, // 12 seconds between retries
     MAX_RETRIES: 2, // Limit retries to prevent endless loops
   },
-
   // Cold start messages
   COLD_START: {
     AGE_SERVICE: 'Age classification service is waking up (Render free tier)...',
@@ -34,7 +30,6 @@ const config = {
     GENERAL_WARNING: 'Free tier services may take 2-3 minutes to wake up from sleep.',
     SERVICE_CASCADE: 'Multiple AI services are starting up. This can take 2-3 minutes on free tier hosting.',
   },
-
   // Model Results & Display Config
   RESULTS: {
     CONFIDENCE_THRESHOLDS: {
@@ -48,7 +43,6 @@ const config = {
       LOW: 'error',
     },
   },
-
   // Enhanced error messages for your specific service architecture
   ERRORS: {
     NETWORK_ERROR: 'Network error. Please check your internet connection and try again.',
@@ -69,7 +63,6 @@ const config = {
     SERVICE_CASCADE_ERROR: 'Multiple AI services are starting up simultaneously. This can take 2-3 minutes on free tier hosting.',
     AUTISM_SERVICE_ERROR: 'The autism detection service is currently unavailable. This often happens during cold starts.',
   },
-
   // Success messages
   SUCCESS: {
     UPLOAD_SUCCESS: 'Image uploaded successfully!',
@@ -77,9 +70,7 @@ const config = {
     CHILD_DETECTED: 'Child detected. Autism analysis performed.',
     RETRY_SUCCESS: 'Analysis completed after retry.',
   },
-
   // Updated to match your main API base URL
   AGE_API_BASE_URL: process.env.REACT_APP_API_URL || 'https://animal-human-filter-667306373563.europe-west2.run.app',
 };
-
 export default config;
